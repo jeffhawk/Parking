@@ -5,77 +5,126 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIEG - Pagamento</title>
+    <link rel="stylesheet" href="css/styles.css">
+    
 </head>
-<body>
-    <header>
+<body class="body-pag">
+    <header class="cabeca">
         <h1>Cabine de Pagamento</h1>
     </header>
 
-    <footer>
+    <footer class="pe">
         Data:
         Hora:
+        <div>
+            User:<div class="usuario"></div>
+        </div>
+        
     </footer>
 
-    <nav>
-        Navigation 1
+    <nav class="menu">
+        <div class="mnu-pag">
+            Navigation 1
+            Navigation 2
+            Navigation 3
+            Navigation 4
+        </div>
     </nav>
-    <main>
-        <article>
-            Article1
-        </article>
-        <section>
-            Section1
-        </section>
+
+    <main class="principal"> 
+        <div class="consulta">
+            <h1 class="tit-pesq">Pesquisar</h1>
+            <div class="text-pesquisa">
+                <Label>Digite o número do Ticket: </Label>
+                <input type="text" class="ticket" id="ticket" autocomplete="off" required />
+            </div>
+            <div class="button-pesquisa">
+                <input type="button" class="btn-pesquisar" value="Pesquisar">
+            </div>
+        </div>
+        <div class="dados-pag">
+            <h1 class="tit-dados">Dados para pagamento!</h1>
+            <div class="text-dadospag">
+                <p>Placa: </p>
+                <p>Data Entrada:</p>
+                <p>Hora Entrada:</p>
+                <p>Data Saida:</p>
+                <p>Hora Saida:</p>
+                <p>Valor:</p>
+            </div>
+            <div class="button-pagar">
+                <input type="button" class="btn-pagar" value="Pagar">
+            </div>
+
+
+        </div>
+        <div class="btn-voltar">
+            <input type="button" value="Voltar" class="btn1" onclick="voltar();">
+        </div>
+       
     </main>
-    <aside>
+
+    <aside class="asidel">
         <table title="Tickets">
-            <caption><th>Tickets</th></caption>
-            <tr>
-                <td></td>
-                <th>Tickets Pagos</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>teste1</th>
-                <th>teste1</th>
-                <th>teste1</th>
-            </tr>
-            <tr>
-                <td>teste1</td>
-                <td>teste1</td>
-                <td>teste1</td>
-            </tr>
-            <tr>
-                <td>teste1</td>
-                <td>teste1</td>
-                <td>teste1</td>
-            </tr>
-            <tr>
-                <td></td>
-                <th>Tickets Não Pagos</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>teste1</th>
-                <th>teste1</th>
-                <th>teste1</th>
-            </tr>
-            <tr>
-                <td>teste1</td>
-                <td>teste1</td>
-                <td>teste1</td>
-            </tr>
-            <tr>
-                <td>teste1</td>
-                <td>teste1</td>
-                <td>teste1</td>
-            </tr>
+            <caption class="tit-prin">Tickets no sistema</caption>
+            
+            <thead>
+                <tr>
+                    <td class="tit-pag" colspan="3">
+                        Tickets Pagos
+                    </td>
+                </tr>                 
+            </thead>
+            <tfoot>
+                <tr><td colspan="4">Atualizado em: </td></tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <th scope="col">Ticket</th>
+                    <th scope="col">Placa</th>
+                    <th scope="col">Saída</th>
+                </tr>
+                <tr>
+                    <th scope="row">100</th>
+                    <td data-label="Ticket">L1C2</td>
+                    <td>L1C3</td>
+                </tr>
+                <tr>
+                    <th scope="row">200</th>
+                    <td>teste1</td>
+                    <td>teste1</td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td class="tit-nonpag" colspan="3">
+                        Tickets Não Pagos
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">Ticket</th>
+                    <th scope="col">Placa</th>
+                    <th scope="col">Entrada</th>
+                </tr>
+                <tr>
+                    <th scope="row">300</th>
+                    <td>teste1</td>
+                    <td>teste1</td>
+                </tr>
+                <tr>
+                    <th scope="row">400</th>
+                    <td>teste1</td>
+                    <td>teste1</td>
+                </tr>
+            </tbody>
+            
             
         </table>
     </aside>
     
-    <input type="button" value="Teste" class="btn1" onclick="voltar();">
-    <a href="#" id="voltar-index" >Voltar</a>
+    
     <script type="text/javascript" src="js/script.js"></script>
+
 </body>
 </html>

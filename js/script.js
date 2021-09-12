@@ -1,7 +1,7 @@
 var fields = document.querySelectorAll(".text-b input");
 var btn = document.querySelector(".btn");
 var btn1 = document.querySelector("btn1");
-var user;
+var user = "";
 
 
 function check(){
@@ -13,17 +13,20 @@ function check(){
 
 function teste() {
     if(fields[0].value == "Jeff" && fields[1].value == "1234"){
-        window.alert("Seja bem vindo, " + fields[0].value);
+        window.user = ""+fields[0].value;
+        
+        window.alert("Seja bem vindo, " + window.user);
         window.alert("Você será redirecionado" );
+        
         document.getElementById("email").value = "";
         document.getElementById("email").focus();
         document.getElementById("senha").value = "";
-        user = fields[0].value;
-        window.location.replace("pag.html")                    
+        window.location.replace("pag.html");
+
     }else if(fields[0].value == "" && fields[1].value == ""){
-        window.alert("Os campos não podem ser em branco")
+        window.alert("Os campos não podem ser em branco");
     }else{
-        window.alert("Usuário ou senha inválidos!")
+        window.alert("Usuário ou senha inválidos!");
     }
 }
 
@@ -41,13 +44,13 @@ function () {
 })
 
 function voltar() {
-    alert("Usuário logado: " + user)
+    alert("Usuário logado: " + window.user);
     window.location.replace("/index.html");
 }
 
-document.getElementById("email").value = "";
+/*document.getElementById("email").value = "";
 document.getElementById("email").focus();
-document.getElementById("senha").value = "";
+document.getElementById("senha").value = "";*/
 
 
 
@@ -62,3 +65,4 @@ fields[0].addEventListener("keyup", check);
 fields[1].addEventListener("keyup", check);
 btn.addEventListener("click", teste);
 btn1.addEventListener("click", voltar);
+
