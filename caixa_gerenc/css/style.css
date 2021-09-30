@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.clear{
+    clear: both;
+}
+.container{
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 3%;
+}
+section.system{
+    background: #ccc;
+    padding: 10px 30px;
+}
+h2.settings{
+    text-align: center;
+}
+section.controle > .container{
+   padding: 20px 2%;
+}
+div.entrada-ticket {
+    float: right;
+}
+/*******/
+
+.lasanha > .container{
+   margin-top: 40px;
+}
+
+.carro{
+    width: 33.3%;
+    float: left;
+    text-align: left;
+}
+.carro h2{
+   /* border: 10px solid white;*/
+   padding: 0 35px;
+}
+
+div.dados{
+    margin-top: 20px;
+    text-align: center;
+}
+/**IMG*/
+img{
+    width: 100%;
+}
+
+.finalizar input{
+    text-align: center;
+    background-color: #ccc;
+    border-radius: 10px;
+    width: 87px;
+    height: 34px;
+    text-transform: uppercase;
+   color: black;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+   .carro{
+       width: 100%;
+   }
+   .carro h2{
+       text-align: center;
+       margin-bottom: 70px;
+   }
+   .dados{
+       margin-bottom: 20px;
+   }
+   
+}
