@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TICKETS EM ABERTO</title>
+    <script>
+      function inicia(){
+          //lerTabela();
+          atualizaTabelaNaoPago();
+      }
+      window.addEventListener("load", inicia);
+    </script>
+</head>
+<style>
+    table {
+        width: 100%;
+        height: auto ;
+        border-collapse: inherit;
+        border: 2px solid rgba(62, 25, 148, 0.274);
+        letter-spacing: 1px;
+        font-family: sans-serif;
+        font-size: .8rem;
+        align-content: center;
+        align-items: center;
+      }
+      .tit-prin{
+        font-family: sans-serif;
+        font-size: 20px;
+        text-align: center;
+        padding: 10px;
+        caption-side: top;
+        background-color: grey;
+        color: #fff;
+      }
+      
+      .tit-pag{
+        font-family: sans-serif;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        caption-side: top;
+        background-color:beige;
+        color: blue;
+        border: 1px solid;
+      }
+      
+      .tit-nonpag{
+        font-family: sans-serif;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px;
+        caption-side: top;
+        background-color:beige;
+        color: red;
+        border: 1px solid;
+      }
+      
+      th[scope="col"] {
+        background-color: #696969;
+        color: #fff;
+        border: 1px solid;
+      }
+      
+      th[scope="row"] {
+        background-color: #d7d9f2;
+        color: darkblue;
+      }
+      
+      tr, td, th {
+        border: 1px solid #696969;
+        color: #fff;
+      }
+</style>
+  <body style="background: rgb(100,100,100);">
+    <h2 style="text-align: center; font-size:20px; color:white;">TICKET EM ABERTOS!</h2>
+    <table title="Tickets não Pagos">
+      <caption class="tit-nonpag">Tickets Não Pagos</caption>
+      <thead>
+        <tr>
+          <th scope="col">Nº Ticket</th>
+          <th scope="col">Placa</th>
+          <th scope="col" colspan="3">Data</th>
+          <th scope="col" colspan="2">hora</th>
+          <th scope="col">Pago</th>
+          <th scope="col">Saiu?</th>
+          <th scope="col" colspan="2">Controle</th>
+        </tr>
+      </thead>
+      <tfoot>
+          <tr><td colspan="4">Atualizado em: </td></tr>
+      </tfoot>
+      <tbody id="tableTicketNaoPago">
+          <!-- <tr>
+              <th scope="row">100</th>
+              <td data-label="Ticket">L1C2</td>
+              <td>L1C3</td>
+          </tr>
+          <tr>
+              <th scope="row">200</th>
+              <td>teste1</td>
+              <td>teste1</td>
+          </tr>
+          <tr></tr>
+          <tr></tr>
+          <tr></tr> -->
+      </tbody>
+    </table>
+
+    <script src="../js/script.js"></script>
+  </body>
+</html>

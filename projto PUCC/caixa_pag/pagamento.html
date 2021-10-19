@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIEG - Pagamento</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <script>
+        function inicia(){
+            atualizaTabelaNaoPago();
+            atualizaTabelaPago();
+        }
+        window.addEventListener("load", inicia);
+    </script>
+
+</head>
+<body class="body-pag">
+    <header class="cabeca">
+        <h1>Cabine de Pagamento</h1>
+    </header>
+
+    <footer class="pe">
+        Data:
+        Hora:
+        <div>
+            User:<div class="usuario"></div>
+        </div>
+        
+    </footer>
+
+    <!-- <nav class="menu">
+        <div class="mnu-pag">
+            Navigation 1
+            Navigation 2
+            Navigation 3
+            Navigation 4
+        </div>
+    </nav> -->
+
+    <main class="principal"> 
+        <div class="consulta">
+            <h1 class="tit-pesq">Pesquisar</h1>
+            <div class="text-pesquisa">
+                <Label >Digite o número do Ticket: </Label>
+                <input type="text" class="tickets" id="ticket" autocomplete="off" required />
+            </div>
+            <div class="button-pesquisa">
+                <button onclick="buscarTicket();" class="btn-pesquisar" value="Pesquisar">Pesquisar</button>
+                <!-- <input type="button" class="btn-pesquisar" > -->
+            </div>
+        </div>
+        <div class="dados-pag">
+            <h1 class="tit-dados">Dados para pagamento!</h1>
+            <div class="text-dadospag">
+                <p>Ticket: <label id="dados[0]"></label></p>
+                <p>Placa: <label id="dados[1]"></label></p>
+                <p>Data Entrada:  <label id="dados[2]"></label>/ <label id="dados[3]"></label>/ <label id="dados[4]"></label> </p>
+                <p>Hora Entrada: <label id="dados[5]"></label>: <label id="dados[6]"></label></p>
+                <p>Pago?: <label id="dados[7]"></label>    Saiu?: <label id="dados[8]"></label></p>
+                <!-- <p >Data Saida:  </p>
+                <p>Hora Saida: </p>
+                <p>Valor:</p> -->
+            </div>
+            <div class="button-pagar">
+                <input type="button" class="btn-pagar" value="Pagar" onclick="pagarTicket();">
+            </div>
+
+
+        </div>
+        <div class="btn-voltar">
+           <a href="../menu.html"><input type="button" value="Voltar" class="btn1" onclick="voltar();"></a>
+           <button value="Teste" onclick="voltar()">Voltar</button>
+        </div>
+       
+    </main>
+
+    <aside class="asideTable" id="ladoTabelas">
+        <p  class="tit-prin">Tickets no sistema </p>
+        <table title="TicketsPagos">
+            <caption class="tit-pag">Tickets Pagos</caption>          
+            <thead>
+                <tr>
+                  <th scope="col">Nº Ticket</th>
+                  <th scope="col">Placa</th>
+                  <th scope="col" colspan="3">Data</th>
+                  <th scope="col" colspan="2">hora</th>
+                  <th scope="col">Pago</th>
+                  <th scope="col">Saiu?</th>
+                  <th scope="col" colspan="2">Controle</th>
+                </tr>
+              </thead>
+            <tfoot>
+                <tr><td colspan="4">Atualizado em: </td></tr>
+            </tfoot>
+            <tbody id="tableTicketPago">
+                <!-- <tr>
+                    <th scope="row">100</th>
+                    <td data-label="Ticket">L1C2</td>
+                    <td>L1C3</td>
+                </tr>
+                <tr>
+                    <th scope="row">200</th>
+                    <td>teste1</td>
+                    <td>teste1</td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr> -->
+            </tbody>
+        </table>
+        <br>
+        <table title="TicketsNaoPagos">
+            <caption class="tit-nonpag">Tickets Não Pagos</caption>
+            <thead>
+                <tr>
+                  <th scope="col">Nº Ticket</th>
+                  <th scope="col">Placa</th>
+                  <th scope="col" colspan="3">Data</th>
+                  <th scope="col" colspan="2">hora</th>
+                  <th scope="col">Pago</th>
+                  <th scope="col">Saiu?</th>
+                  <th scope="col" colspan="2">Controle</th>
+                </tr>
+              </thead>
+            <tbody id="tableTicketNaoPago">
+                <!-- <tr>
+                    <th scope="row">300</th>
+                    <td>teste1</td>
+                    <td>teste1</td>
+                </tr>
+                <tr>
+                    <th scope="row">400</th>
+                    <td>teste1</td>
+                    <td>teste1</td> -->
+                </tr>
+            </tbody> 
+        </table>
+        
+    </aside>
+    
+    
+    <script type="text/javascript" src="../js/script.js"></script>
+
+</body>
+</html>
