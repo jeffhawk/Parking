@@ -196,7 +196,7 @@ function atualizaTabelaPagoNaoSaiu(){
   }else{
     for(i=0; i < novoLength; i++){
       var novaLinha = tabela.insertRow(i);
-      if(localStorage.getItem(i + "." + 7 + "." + defini[7]) == "S"){
+      if(localStorage.getItem(i + "." + 7 + "." + defini[7]) === "S" && localStorage.getItem(i + "." + 8 + "." + defini[8]) === "N"){
        
         for(j=0; j < defini.length; j++){
           console.log(localStorage.getItem(i + "." + j + "." + defini[j]));
