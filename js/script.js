@@ -55,6 +55,7 @@ document.getElementById("senha").value = "";*/
 
 
 function inicia(){
+    var test = document.ge
 
   
 }
@@ -65,4 +66,5 @@ fields[0].addEventListener("keyup", check);
 fields[1].addEventListener("keyup", check);
 btn.addEventListener("click", teste);
 btn1.addEventListener("click", voltar);
+
 

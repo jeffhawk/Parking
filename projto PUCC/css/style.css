@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+section.bg{
+    width: 100vw;
+    height: 100vh;
+    background: rgb(100,100,100);
+}
+
+a.cta{
+    width: 40%;
+    max-width: 600px;
+    padding: 8px 20px;
+    text-align: center;
+    background: black ;
+    color: white;
+    font-size: 23px;
+  
+    border-radius: 10px;
+    text-decoration: none;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    --ms-transform:translate(50%,-50%);
+}
+
+@media screen and (max-width: 768px) {
+ 
+}
