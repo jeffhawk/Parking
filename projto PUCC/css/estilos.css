@@ -464,3 +464,19 @@
   width: auto;
   
 }
+
+.tableLeft{
+  height: auto;
+  width: auto;
+  top: 0;
+  left: 0;
+  position: relative;
+}
+
+.tableRight{
+  height: auto;
+  width: auto;
+  top: 0;
+  right: 0;
+  position: relative;
+}

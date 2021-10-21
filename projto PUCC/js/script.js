@@ -54,6 +54,7 @@ function geraTicket(plac) {
     document.getElementById("num_Placa").value = "";
     //alert(localStorage.getItem(qtdeItensDB + '.' + defini.indexOf('num') + '.' + defini[0]));
     qtdeItensDB = localStorage.length / 9;
+    window.location.replace("../caixa_gerenc/gerenciamento.html")
 
 
   }
@@ -76,7 +77,7 @@ function buscaPlacaDB(placa){
 
 
 function atualizaTabelaNaoPago(){
-  var tabela = document.getElementById("tableTicketNaoPago");
+  var tabela = window.document.getElementById("tableTicketNaoPago");
   var rows = tabela.getElementsByTagName("tr");
   var linhas = tabela.rows.length;
   var novoLength = 0;
@@ -161,7 +162,7 @@ function atualizaTabelaPago(){
         }
         var celula10 = novaLinha.insertCell(9);
         var celula11 = novaLinha.insertCell(10);
-        celula10.innerHTML = "<button onClick='saida(this)'>Saida</button>";
+        celula10.innerHTML = "<a href='../caixa_saida/saida.html'><button>Sair</button></a>";
         celula11.innerHTML = "<button onClick='removerLinhaTabelaNaoPagos(this)'>Excluir</button>";
       }
     }
@@ -207,7 +208,7 @@ function atualizaTabelaPagoNaoSaiu(){
         }
         var celula10 = novaLinha.insertCell(9);
         var celula11 = novaLinha.insertCell(10);
-        celula10.innerHTML = "<button onClick='adicionarVitoria(this)'>Sair</button>";
+        celula10.innerHTML = "<a href='../caixa_saida/saida.html'><button>Sair</button></a>";
         celula11.innerHTML = "<button onClick='removerLinhaTabelaNaoPagos(this)'>Excluir</button>";
       }
     }
@@ -238,6 +239,8 @@ function removerLinhaTabelaNaoPagos(linha1) {
     localStorage.removeItem(i + "." + j + "." + defini[j]);       
   }
   document.getElementById("tableTicketNaoPago").deleteRow(i);
+  window.location.reload();
+  // atualizaTabelaPagoNaoSaiu();
 
   
 }
@@ -381,6 +384,7 @@ function buscaTicket(tick){
   return false;
 
 }
+
 
 function saida(linha){
   var i = linha.parentNode.parentNode.rowIndex - 1;
