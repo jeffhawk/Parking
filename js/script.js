@@ -388,38 +388,38 @@ function buscaTicket(tick){
 
 
 function saida(linha){
-  var i = linha.parentNode.parentNode.rowIndex - 1;
+  //var i = linha.parentNode.parentNode.rowIndex - 1;
   var tabela = window.document.getElementById("tableTicketPago");
-  var nTicket = tabela.rows[i].cells[0].innerText;
+  //var nTicket = tabela.rows[i].cells[0].innerText;
   var qtdeItensDB = localStorage.length / 9;
+  var numTicket = window.document.getElementById("codTicket").value;
+  var buscaTick = buscaTicket(numTicket);
+  alert(buscaTick);
+  if (buscaTick === true){
+    //if (confirm("Confirma o pagamento do ticket?")){
+    for(i=0; i < qtdeItensDB; i++){
+      if (localStorage.getItem(i + "." + defini.indexOf('num') + "." + defini[0]) == numTicket){
+        //var novaLinha = tabela.insertRow(i);
+        //for(j=0; j < defini.length; j++){
+          //console.log(localStorage.getItem(i + "." + 0 + "." + defini[j]));
+          // var num = localStorage.getItem(i + "." + defini.indexOf('num') + "." + defini[0]);
+          // var placa = localStorage.getItem(i + "." + defini.indexOf('placa') + "." + defini[1]);
+          // var dia = localStorage.getItem(i + "." + defini.indexOf('dia') + "." + defini[2]);
+          // var mes = localStorage.getItem(i + "." + defini.indexOf('mes') + "." + defini[3]);
+          // var ano = localStorage.getItem(i + "." + defini.indexOf('ano') + "." + defini[4]);
+          // var hora = localStorage.getItem(i + "." + defini.indexOf('hora') + "." + defini[5]);
+          // var minuto = localStorage.getItem(i + "." + defini.indexOf('minuto') + "." + defini[6]);
+          localStorage.setItem(i + "." + defini.indexOf('saiu') + "." + defini[8], "S");
+          // var saiu = localStorage.getItem(i + "." + defini.indexOf('saiu') + "." + defini[8]);
+          //var resul = [num, placa, dia, mes, ano, hora, minuto, pago, saiu];
+          //plac.innerHTML = placa;
+          // for(j=0; j <resul.length; j++){
+          //   document.getElementById("dados["+j+"]").innerHTML = resul[j];
+          // }
+          window.location.reload();
 
-    // var buscaTick = buscaTicket(nTicket);
-    // if (buscaTick === true){
-    //   //alert(confirm("Confirma?"));
-    //   if (confirm("Confirma o pagamento do ticket?")){
-  for(i=0; i < qtdeItensDB; i++){
-    if (localStorage.getItem(i + "." + defini.indexOf('num') + "." + defini[0]) == nTicket){
-      //var novaLinha = tabela.insertRow(i);
-      //for(j=0; j < defini.length; j++){
-        //console.log(localStorage.getItem(i + "." + 0 + "." + defini[j]));
-        // var num = localStorage.getItem(i + "." + defini.indexOf('num') + "." + defini[0]);
-        // var placa = localStorage.getItem(i + "." + defini.indexOf('placa') + "." + defini[1]);
-        // var dia = localStorage.getItem(i + "." + defini.indexOf('dia') + "." + defini[2]);
-        // var mes = localStorage.getItem(i + "." + defini.indexOf('mes') + "." + defini[3]);
-        // var ano = localStorage.getItem(i + "." + defini.indexOf('ano') + "." + defini[4]);
-        // var hora = localStorage.getItem(i + "." + defini.indexOf('hora') + "." + defini[5]);
-        // var minuto = localStorage.getItem(i + "." + defini.indexOf('minuto') + "." + defini[6]);
-        localStorage.setItem(i + "." + defini.indexOf('saiu') + "." + defini[8], "S");
-        // var saiu = localStorage.getItem(i + "." + defini.indexOf('saiu') + "." + defini[8]);
-        //var resul = [num, placa, dia, mes, ano, hora, minuto, pago, saiu];
-        //plac.innerHTML = placa;
-        // for(j=0; j <resul.length; j++){
-        //   document.getElementById("dados["+j+"]").innerHTML = resul[j];
-        // }
-        window.location.reload();
-
+      }
     }
-  }
     //   }else{
     //     for(j=0; j < 9; j++){
     //       window.document.getElementById("dados["+j+"]").innerText = "";
@@ -427,5 +427,5 @@ function saida(linha){
     //     window.document.getElementById("ticket").value = "";
     //     window.document.getElementById("ticket").focus();
     //   }
-      
+  }
 }
