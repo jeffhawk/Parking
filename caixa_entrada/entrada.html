@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>SIEG</title>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+<style>
+body {              
+ background-image: url("../caixa_pag/img/park\ \(9\).jpg"); /*https://wallpaperstock.net/parking-lot-at-night-wallpapers_35681_1280x720.jpg);*/
+}
+</style>
+
+    <body onload="time()">
+        <p1 style="color: orange;">Horário: <div id="txt"></div></p1>
+
+        <p2 style="color: orange;"><script language=javascript type="text/javascript">
+            document.write ("<h1> Data: " + dayName[now.getDay() ] + ", " + now.getDate () + " de " + monName [now.getMonth() ]   +  " de "  +     now.getFullYear () + ". </h1>")
+            </script></p2>
+
+        
+
+        <H1 style="color: blue;">SIEG</H1>
+        <H2 style="background-color: crimson;">Cabine de Entrada</H2>
+        <H3>Preencha seus dados nos campos abaixo e clique em <b>gerar ticket:</b> </H3>
+        <p style="font-size: 20px; background-color: dimgrey;">Voce tem 15 minutos de tolerancia! </p>
+        <br>
+        
+        <!-- <FORM action="js/processamento.js"> -->
+        
+            Placa:<br> <input type="text" name="ID_PLACA" id="num_Placa"> <br>
+           <BR>
+            
+           
+            
+            <BR>
+           <a href="../caixa_gerenc/gerenciamento.html"><button class="gerar" type="button" name="SAVE_INFO" value="GERAR TICKET" onclick="geraTicket(placaNum = document.getElementById('num_Placa').value);"> GERAR TICKET </button></a>
+        <!-- </FORM> -->
+        <!-- <button value="Voltar" onclick="voltar();">Voltar</button> -->
+        
+        <!-- <script src="js/jquery.js"></script>
+        <script src="js/main.js"></script> -->
+        <script src="../js/script.js"></script>
+    </body>
+
+
+<script type="text/javascript">
+        function time()
+        {
+        today=new Date();
+        h=today.getHours();
+        m=today.getMinutes();
+        s=today.getSeconds();
+        document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+        setTimeout('time()',500);
+        }
+</script>
+
+<script language=javascript type="text/javascript">
+dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
+monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
+now = new Date
+</script>
+</html>

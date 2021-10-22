@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/estilos.css">
+  <title>Document</title>
+</head>
+<body onload="time()">
+  <style type="text/css">
+body {
+ background-image: url("../caixa_pag/img/park\ \(9\).jpg"); /*https://wallpaperstock.net/parking-lot-at-night-wallpapers_35681_1280x720.jpg);*/
+}
+    </style> 
+    <div class="tableLeft">
+      <table title="TicketsPagos">
+        <caption class="tit-pag">Tickets Pagos</caption>          
+        <thead>
+            <tr>
+              <th scope="col">Nº Ticket</th>
+              <th scope="col">Placa</th>
+              <th scope="col" colspan="3">Data</th>
+              <th scope="col" colspan="2">hora</th>
+              <th scope="col">Pago</th>
+              <th scope="col">Saiu?</th>
+              <th scope="col" colspan="2">Controle</th>
+            </tr>
+          </thead>
+        <tfoot>
+            <tr><td colspan="4">Atualizado em: </td></tr>
+        </tfoot>
+        <tbody id="tableTicketPago">
+            <!-- <tr>
+                <th scope="row">100</th>
+                <td data-label="Ticket">L1C2</td>
+                <td>L1C3</td>
+            </tr>
+            <tr>
+                <th scope="row">200</th>
+                <td>teste1</td>
+                <td>teste1</td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr> -->
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div id="bkg" class="mainSaida">
+        <div id="myTitle">
+            <span style="color:red">
+                CABINE DE SAÍDA
+            </span>
+        </div>
+    
+        <div id="subTittle">
+            <span style="color:white">
+                Placa do carro: XXXXXXX
+            </span>
+        <br><br><br>
+        <form action="">
+          <span></span>
+          <label for="fname" style="color: white">Codigo do Ticket:</label><br>
+          <input type="text"name="fname"><br>
+        </form>
+        <br><br>
+          <button onclick="saida();" class="myButton">FINALIZAR</button>
+
+          <!-- <body > -->
+            <br></br><p1 style="color: white;"><br><div id="txt"></div></p1></br>
+     <p2 style="color: white;">
+     <script language=javascript type="text/javascript">
+                document.write ("" + dayName[now.getDay() ] + ", " + now.getDate () + " de " + monName [now.getMonth() ]   +  " de "  +     now.getFullYear () + ". </h1>")
+                </script></p2>
+          <!-- </body> -->
+          
+          
+          <br><br><br><br><br><br><br><br>
+          <!-- -
+          <span style="color:white">
+                Caso não tenha efetuado o pagamento, favor ir a aba de Suporte
+            </span>
+          <br><a href="#" class="myButton">SUPORTE</a> -->
+          
+          
+          
+      <!-- <table style="color:red">
+      <tr>
+      <th>TIPO - </th>
+        <th>Ticket</th>
+        <th>Placa</th>
+        <th>Saida</th>
+      
+      </tr>
+      <tr>
+      <th>PAGOS - </td>
+        <td>Exemplo1</td>
+        <td>Exemplo2</td>
+        <td>Exemplo3</td>
+      </tr>
+      </table>
+      <br><br><br>
+      <table style="color:red">
+      <tr>
+      <th>TIPO - </th>
+        <th>Ticket</th>
+        <th>Placa</th>
+        <th>Entrada</th>
+      
+      </tr>
+      <tr>
+      <th>NÃO PAGOS - </td>
+        <td>Exemplo1</td>
+        <td>Exemplo2</td>
+        <td>Exemplo3</td>
+      </tr>
+      </table> -->
+     
+        </div>
+        
+        
+    </div>
+
+    <div class="tableRight">
+      <table title="TicketsNaoPagos">
+        <caption class="tit-nonpag">Tickets Não Pagos</caption>
+        <thead>
+            <tr>
+              <th scope="col">Nº Ticket</th>
+              <th scope="col">Placa</th>
+              <th scope="col" colspan="3">Data</th>
+              <th scope="col" colspan="2">hora</th>
+              <th scope="col">Pago</th>
+              <th scope="col">Saiu?</th>
+              <th scope="col" colspan="2">Controle</th>
+            </tr>
+          </thead>
+        <tbody id="tableTicketNaoPago">
+            <!-- <tr>
+                <th scope="row">300</th>
+                <td>teste1</td>
+                <td>teste1</td>
+            </tr>
+            <tr>
+                <th scope="row">400</th>
+                <td>teste1</td>
+                <td>teste1</td> -->
+            </tr>
+        </tbody> 
+      </table>
+    </div>
+
+
+    <!-- <script src="js/jquery.js"></script>
+    <script src="js/main.js"></script> -->
+    <script type="text/javascript" src="../js/script.js"></script>
+    <script type="text/javascript">
+      function time()
+      {
+      today=new Date();
+      h=today.getHours();
+      m=today.getMinutes();
+      s=today.getSeconds();
+      document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+      setTimeout('time()',500);
+      }
+      </script>
+<script language=javascript type="text/javascript">
+dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
+monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
+now = new Date
+</script>
+<script>
+  function inicia(){
+      atualizaTabelaNaoPago();
+      atualizaTabelaPago();
+  }
+  window.addEventListener("load", inicia);
+</script>
+  </body>
+</html>
+
