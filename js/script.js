@@ -32,6 +32,7 @@ function geraTicket(plac) {
     alert('Ticket gerado com sucesso: ' + num);
     document.getElementById("num_Placa").value = "";
     //alert(localStorage.getItem(0 + '.' + defini.indexOf('num') + '.' + defini[0]));
+    window.location.replace("../caixa_gerenc/gerenciamento.html");
   }else if (busca == true){
     alert("Placa já se encontra cadastrada no sistema.");
     // alert("Placa digita: " + placaNum);
@@ -54,7 +55,7 @@ function geraTicket(plac) {
     document.getElementById("num_Placa").value = "";
     //alert(localStorage.getItem(qtdeItensDB + '.' + defini.indexOf('num') + '.' + defini[0]));
     qtdeItensDB = localStorage.length / 9;
-    window.location.replace("../caixa_gerenc/gerenciamento.html")
+    window.location.replace("../caixa_gerenc/gerenciamento.html");
 
 
   }
