@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>SIEG</title>
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body >
+        <H1 style="color: blue;">SIEG</H1>
+        <H2 style="background-color: crimson;">Cabine de Entrada</H2>
+        <H3>Preencha seus dados nos campos abaixo e clique em <b>gerar ticket:</b> </H3>
+        <p style="font-size: 20px; background-color: dimgrey;">Voce tem 15 minutos de tolerancia! </p>
+        <br>
+        
+        <FORM>
+            Placa:<br> <input type="text" name="ID_PLACA" id="num_Placa"> <br>
+           <BR>
+            <BR>
+            <a href="../caixa_gerenc/gerenciamento.html"><button class="gerar" type="button" name="SAVE_INFO" value="GERAR TICKET" onclick="geraTicket(placaNum = document.getElementById('num_Placa').value);"> GERAR TICKET </button></a>
+
+         </FORM>
+
+         <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+         <script src="../js/comportamento.js"></script>
+ 
+    </body>
+</html>
