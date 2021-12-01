@@ -1,9 +1,10 @@
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>SIEG</title>
         <link rel="stylesheet" href="style.css">
+        <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+        <script src="../js/comportamento.js"></script>
 
     </head>
 <style>
@@ -12,12 +13,14 @@ body {
 }
 </style>
 
-    <body onload="time()">
-        <p1 style="color: orange;">Horário: <div id="txt"></div></p1>
+    <body >
+        <!-- <p1 style="color: orange;">Horário: <div id="txt"></div></p1> -->
 
-        <p2 style="color: orange;"><script language=javascript type="text/javascript">
-            document.write ("<h1> Data: " + dayName[now.getDay() ] + ", " + now.getDate () + " de " + monName [now.getMonth() ]   +  " de "  +     now.getFullYear () + ". </h1>")
-            </script></p2>
+        <p2 style="color: orange;">
+            <!-- <script language=javascript type="text/javascript">
+                document.write("<h1> Data: " + dayName[now.getDay() ] + ", " + now.getDate () + " de " + monName [now.getMonth() ]   +  " de "  +     now.getFullYear () + ". </h1>");
+            </script> -->
+        </p2>
 
         
 
@@ -41,13 +44,10 @@ body {
         <!-- </FORM> -->
         <!-- <button value="Voltar" onclick="voltar();">Voltar</button> -->
         
-        <!-- <script src="js/jquery.js"></script>
-        <script src="js/main.js"></script> -->
-        <script src="../js/comportamento.js"></script>
     </body>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
         function time()
         {
         today=new Date();
@@ -63,5 +63,5 @@ body {
 dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
 monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
 now = new Date
-</script>
+</script> -->
 </html>

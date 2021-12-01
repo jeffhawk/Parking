@@ -258,8 +258,8 @@ async function ativacaoDoServidor ()
     app.get   ('/veiculos'        , recuperacaoDeTodos);
     app.get   ('/veiculos/:codigo', recuperacaoDeUm);
 
-    console.log ('Servidor ativo na porta 3000...');
-    app.listen(3000);
+    console.log ('Servidor ativo na porta 3030...');
+    app.listen(3030);
 }
 
 ativacaoDoServidor();

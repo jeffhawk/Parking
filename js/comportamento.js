@@ -1,8 +1,8 @@
-const { response } = require("express");
+//const { response } = require ('express');
 
 function buscaVeiculo () {
 	let codigo = document.getElementById('pesquisa').value
-	let url = `http://localhost:3000/Veiculos/${codigo}`
+	let url = `http://localhost:3030/Veiculos/${codigo}`
 
 	axios.get(url)
 	.then(response => {
@@ -47,7 +47,7 @@ function geraTicket(plac) {
   if (codigo !== "" && placa !== "") 
   {
 		let objVeiculo = { codigo: parseInt(codigo), placa: placa, dataentrada: '' };
-		let url = 'http://localhost:3000/Veiculos/'
+		let url = 'http://localhost:3030/Veiculos/'
 
 		let res = axios.post(url, objVeiculo)
 		.then(response => {
@@ -86,7 +86,7 @@ function getRandomInt(min=0, max=1000) {
 /*BUSCA VEICULOS */
 /***TICKET ENCERRADOS */
 function buscaVeiculosLiberados () {
-	let url = `http://localhost:3000/Veiculos/`
+	let url = `http://localhost:3030/Veiculos/`
 
 	axios.get(url)
 	.then(response => {
@@ -140,7 +140,7 @@ function buscaVeiculosLiberados () {
 }
 
 function buscaVeiculosNaoPagos () {
-	let url = `http://localhost:3000/Veiculos/`
+	let url = `http://localhost:3030/Veiculos/`
 
 	axios.get(url)
 	.then(response => {
@@ -167,7 +167,7 @@ function buscaVeiculosNaoPagos () {
 
 /* 
 function buscaVeiculos () {
-	let url = `http://localhost:3000/Veiculos/`
+	let url = `http://localhost:3030/Veiculos/`
 
 	axios.get(url)
 	.then(response => {
