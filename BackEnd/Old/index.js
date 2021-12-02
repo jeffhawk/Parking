@@ -1,3 +1,10 @@
+/* CÓDIGOS PARA STATUS DO TICKET
+    1 - Aberto;
+    2 - Pago;
+    3 - Liberado;
+    10 - Encerrado, já passou pela cancela. */
+
+
 function BD ()
 {
 	process.env.ORA_SDTZ = 'UTC-3'; // garante horário de Brasília
@@ -8,7 +15,7 @@ function BD ()
 			return global.conexao;
 
         const oracledb = require('oracledb');
-        const dbConfig = require('./dbconfig.js');
+        const dbConfig = require('../dbconfig.js');
 
         
         try
@@ -29,7 +36,7 @@ function BD ()
 		try
 		{
 			const conexao = await this.getConexao();
-			const sql     = 'CREATE TABLE Veiculos (Codigo NUMBER(10) PRIMARY KEY, '+
+			const sql     = 'CREATE TABLE Teste (Codigo NUMBER(10) PRIMARY KEY, '+
 			'Placa NVARCHAR2(10) NOT NULL, DataEntrada DATE NOT NULL, DataSaida DATE, Status NUMBER(3))';//,ValorPago NUMBER(50)
 			await conexao.execute(sql);
 		}
@@ -46,8 +53,8 @@ function Veiculos (bd)
 	{
 		const conexao = await this.bd.getConexao();
 		
-		const sql1 = "INSERT INTO Veiculos (Codigo,Placa,DataEntrada, Status) "+
-		"VALUES (:0,:1,sysdate,1)";   // 1 - ABERTO;
+		const sql1 = "INSERT INTO Teste (Codigo,Placa,DataEntrada,Status) "+
+		"VALUES (:0,:1,sysdate,1)";   // 1 - ABERTO - ACABOU DE SER CRIADO RECEBE STATUS ABERTO.
 		const dados = [veiculo.codigo,veiculo.placa];
 		console.log(sql1, dados);
 		await conexao.execute(sql1,dados);
@@ -56,34 +63,31 @@ function Veiculos (bd)
 		await conexao.execute(sql2);	
 	}	
 
-	
+	/*
 	this.update = async function (codigo)
 	{
 			const conexao = await this.bd.getConexao();
 			
 			const sql1 = "UPDATE CODIGO,PLACA "
-			"VALUES (:0,:1,,sysdate,2)";   // 2 - PAGO/LIBERADO
+			"VALUES (:0,:1,sysdate,10)";   // 10 - LIBERADO
 			const dados = [veiculo.codigo,veiculo.placa];
 			console.log(sql1, dados);
 			await conexao.execute(sql1,dados);
 			
 			const sql2 = 'COMMIT';
 			await conexao.execute(sql2);	
-	}
+	
+	  }**/
 	
 	this.recupereTodos = async function ()
 	{
 		const conexao = await this.bd.getConexao();
 		
 		const sql = "SELECT Codigo,Placa,TO_CHAR(DataEntrada, 'YYYY-MM-DD HH24:MI:SS'),TO_CHAR(DataSaida, 'YYYY-MM-DD HH24:MI:SS'),Status "+
-		            "FROM Veiculos";
+		            "FROM Teste";
 		console.log(sql);
 		let ret;
 		ret =  await conexao.execute(sql);
-		// console.log('teste');
-		// console.log(typeof ret);
-		// console.log(ret.rows.length);
-		//console.log(ret.rows);
 		console.log(ret.rows);
 		return ret.rows;
 	}
@@ -93,41 +97,13 @@ function Veiculos (bd)
 		const conexao = await this.bd.getConexao();
 		
 		const sql = "SELECT Codigo,Placa,TO_CHAR(DataEntrada, 'YYYY-MM-DD HH24:MI:SS'),TO_CHAR(DataSaida, 'YYYY-MM-DD HH24:MI:SS'), Status "+
-		            "FROM Veiculos WHERE Codigo=:0";
+		            "FROM Teste WHERE Codigo=:0";
 		const dados = [codigo];
 		ret =  await conexao.execute(sql,dados);
 		
 		return ret.rows;
 	}
 
-	this.recupereAbertos = async function ()
-	{
-		const conexao = await this.bd.getConexao();
-		
-		const sql = "SELECT Codigo,Placa,TO_CHAR(DataEntrada, 'YYYY-MM-DD HH24:MI:SS'), Status "+
-		            "FROM Veiculos WHERE Status=1";
-		
-		ret =  await conexao.execute(sql);
-		
-		return ret.rows;
-	}
-
-}
-
-function Veiculo (codigo,placa,dataentrada,datasaida,status)
-{
-	    this.codigo = codigo;
-	    this.placa   = placa;
-	    this.dataentrada  = dataentrada;
-		this.datasaida  = datasaida;
-		this.status = status;
-}
-
-function Comunicado (codigo,mensagem,descricao)
-{
-	this.codigo    = codigo;
-	this.mensagem  = mensagem;
-	this.descricao = descricao;
 }
 
 function middleWareGlobal (req, res, next)
@@ -152,7 +128,7 @@ async function inclusao (req, res)
         return res.status(422).json(erro1);
     }
     
-    const veiculo = new Veiculo (req.body.codigo,req.body.placa,req.body.dataentrada,"","");
+    const veiculo = new Veiculos (req.body.codigo,req.body.placa,req.body.dataentrada,"");
 
     try
     {
@@ -179,7 +155,7 @@ async function atualizar (req, res)
         return res.status(422).json(erro1);
     }
     
-    const veiculo = new Veiculo (req.body.codigo,req.body.placa,req.body.dataentrada,"");
+    const veiculo = new Veiculos (req.body.codigo,req.body.placa,req.body.dataentrada,"");
 
     try
     {
@@ -215,7 +191,14 @@ async function recuperacaoDeTodos (req, res)
 	}    
     catch(erro)
     {}
-	//console.log(rec.length);
+	let lin = rec.length + " Linhas no Banco"
+	console.log(lin);
+	if(lin === 0)
+	{
+		console.log(rec[0].length + " células na linha");
+	}
+	
+	
 
 	if (rec.length == 0)
 	{
@@ -223,12 +206,15 @@ async function recuperacaoDeTodos (req, res)
 	}
 	else
 	{
-		
 		const ret=[];
 		for (i=0;i<rec.length;i++)
-		{
-			ret.push (new Veiculo (rec[i][0],rec[i][1],rec[i][2],rec[i][3],rec[i][4]));
-		} 
+        {
+            ret.push (new Veiculos (rec[i][0],rec[i][1],rec[i][2],rec[i][3],rec[i][4]));
+			for (j=0; j<5; j++)
+			{
+				console.log(rec[i][j]);
+			}
+        }
 		return res.status(200).json(ret);
 	}
 } 
@@ -266,18 +252,16 @@ async function recuperacaoDeUm (req, res)
 		return res.status(200).json(ret);
 	}
 }
+
+
 async function ativacaoDoServidor ()
 {
     const bd = new BD ();
-	await bd.estrutureSe();
+    await bd.estrutureSe();
     global.veiculos = new Veiculos (bd);
-
     const express = require('express');
     const app     = express();
-	const cors    = require('cors')
-    
     app.use(express.json());   // faz com que o express consiga processar JSON
-	app.use(cors()) //habilitando cors na nossa aplicacao (adicionar essa lib como um middleware da nossa API - todas as requisições passarão antes por essa biblioteca).
     app.use(middleWareGlobal); // app.use cria o middleware global
 
     app.post  ('/veiculos'        , inclusao); 
