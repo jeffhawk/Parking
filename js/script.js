@@ -328,7 +328,7 @@ function buscarTicket(){
   var plac = document.getElementById("dados[1]");
   //alert(tick);
 
-  if (tick === "" || null){
+  if (tick == "" || null){
     alert("Por favor digite um número de ticket válido");
     window.document.getElementById("ticket").focus();
   }else{

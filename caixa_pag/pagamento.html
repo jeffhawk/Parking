@@ -9,11 +9,14 @@
 
     <script>
         function inicia(){
-            atualizaTabelaNaoPago();
-            atualizaTabelaPago();
+            window.document.getElementById("ticket").value = localStorage.getItem("selected");
+            buscaVeiculosEmAbertoNaPag();
+            buscaVeiculosPagoNaPag();
         }
         window.addEventListener("load", inicia);
     </script>
+    <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+    <script src="../js/comportamento.js"></script>
 
 </head>
 <body class="body-pag">
@@ -56,8 +59,8 @@
             <div class="text-dadospag">
                 <p>Ticket: <label id="dados[0]"></label></p>
                 <p>Placa: <label id="dados[1]"></label></p>
-                <p>Data Entrada:  <label id="dados[2]"></label>/ <label id="dados[3]"></label>/ <label id="dados[4]"></label> </p>
-                <p>Hora Entrada: <label id="dados[5]"></label>: <label id="dados[6]"></label></p>
+                <p>Entrada:  <label id="dados[2]"></label>/ <label id="dados[3]"></label>/ <label id="dados[4]"></label> </p>
+                <p>Saida: <label id="dados[5]"></label>: <label id="dados[6]"></label></p>
                 <p>Pago?: <label id="dados[7]"></label>    Saiu?: <label id="dados[8]"></label></p>
                 <!-- <p >Data Saida:  </p>
                 <p>Hora Saida: </p>
@@ -82,15 +85,13 @@
             <caption class="tit-pag">Tickets Pagos</caption>          
             <thead>
                 <tr>
-                  <th scope="col">Nº Ticket</th>
-                  <th scope="col">Placa</th>
-                  <th scope="col" colspan="3">Data</th>
-                  <th scope="col" colspan="2">hora</th>
-                  <th scope="col">Pago</th>
-                  <th scope="col">Saiu?</th>
-                  <th scope="col" colspan="2">Controle</th>
+                    <th scope="col">Nº Ticket</th>
+                    <th scope="col">Placa</th>
+                    <th scope="col">Entrada</th>
+                    <th scope="col">Saida</th>
+                    <th scope="col">Status</th>
                 </tr>
-              </thead>
+            </thead>
             <tfoot>
                 <tr><td colspan="4">Atualizado em: </td></tr>
             </tfoot>
@@ -115,15 +116,13 @@
             <caption class="tit-nonpag">Tickets Não Pagos</caption>
             <thead>
                 <tr>
-                  <th scope="col">Nº Ticket</th>
-                  <th scope="col">Placa</th>
-                  <th scope="col" colspan="3">Data</th>
-                  <th scope="col" colspan="2">hora</th>
-                  <th scope="col">Pago</th>
-                  <th scope="col">Saiu?</th>
-                  <th scope="col" colspan="2">Controle</th>
+                    <th scope="col">Nº Ticket</th>
+                    <th scope="col">Placa</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Controle</th>
                 </tr>
-              </thead>
+            </thead>
             <tbody id="tableTicketNaoPago">
                 <!-- <tr>
                     <th scope="row">300</th>
@@ -141,7 +140,7 @@
     </aside>
     
     
-    <script type="text/javascript" src="../js/script.js"></script>
+    <!-- <script type="text/javascript" src="../js/script.js"></script> -->
 
 </body>
 </html>

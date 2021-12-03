@@ -48,14 +48,14 @@ function mostraMensagem () {
 function geraTicket(plac) {
   var placa = plac.toUpperCase();
   var codigo = getRandomInt();
-  alert('Ticket gerado com sucesso, Ticket Nr.: ' + codigo);
+  //alert('Ticket gerado com sucesso, Ticket Nr.: ' + codigo);
    
   if (codigo !== "" && placa !== "") 
   {
 		let objVeiculo = { codigo: parseInt(codigo), placa: placa, dataentrada: ''};
 		let url = `http://localhost:5000/Veiculos/`
 
-axios.post(url, objVeiculo)
+		axios.post(url, objVeiculo)
 		.then(response => {
 			if (response.data) {
 				const msg = new Comunicado (response.data.codigo, 
@@ -65,6 +65,7 @@ axios.post(url, objVeiculo)
 				
 			}
 			alert('Ticket gerado com sucesso, Ticket Nr.: ' + codigo);
+			window.location.replace("../caixa_gerenc/gerenciamento.html?"+codigo);
 		})
 		.catch(error  =>  {
 			
@@ -75,13 +76,7 @@ axios.post(url, objVeiculo)
 				alert(msg.get());
 			}
 		})
-  }else
-  {
-		alert('Todos os dados precisam estar preenchidos.');
-		alert("Favor digitar uma placa válida!");
-		document.getElementById("num_Placa").value = "";
-		document.getElementById("num_Placa").focus;
-  }
+	}	
 }
 
 function getRandomInt(min=0, max=1000) {
@@ -121,6 +116,8 @@ axios.get(url)
 			// 	ulVeiculos.appendChild(listaVeiculo);
 			// 	//alert("TICKET LIBERADOS")
 		})
+		if(novoLength != 0)
+		{
 			//var defini = [codigo, placa, dataentrada, status];
 			for(i=0; i < novoLength; i++)
 			{
@@ -149,36 +146,188 @@ axios.get(url)
 				}
 			}
 			//up.innerHTML = toString(Date);
+		}else
+		{
+			alert("Nenhum registro encontrado no banco de dados.")
+		}
+	}
+}
+
+function buscaVeiculosEmAbertoNaPag() {
+	let url = `http://localhost:5000/Veiculos/`
+
+axios.get(url)
+	.then(response => {
+		//console.log(response.data.length);
+		criaListaDinamica(response.data);
+	})
+	.catch(error  =>  {
+		alert(error)	
+	})
+
+	const criaListaDinamica = ( veiculos ) => {
+		let tabela = window.document.getElementById("tableTicketNaoPago");
+		let novoLength = 0;
+		novoLength = veiculos.length;
+		teste = Object.values(veiculos);
+		let up = window.document.getElementById("updated");
+		const ulVeiculos = document.getElementById('veiculos');
+		//console.log(novoLength);
+		veiculos.map(veiculo => {
+			//alert(veiculo.status)
+			// if (veiculo.status === 10)
+			// {
+			// 	const listaVeiculo = document.createElement('li');
+			// 	listaVeiculo.innerHTML = `Codigo: ${veiculo.codigo} - Placa: ${veiculo.placa} - Data de Entrada: ${veiculo.dataentrada}`;
+			// 	ulVeiculos.appendChild(listaVeiculo);
+			// 	//alert("TICKET LIBERADOS")
+		})
+		if(novoLength != 0)
+		{
+			//var defini = [codigo, placa, dataentrada, status];
+			for(i=0; i < novoLength; i++)
+			{
+				if(teste[i]["status"] == 1)
+				{
+					var novaLinha = tabela.insertRow(i);
+
+					for(j=0; j<5; j++)
+					{
+						newCell = novaLinha.insertCell(j);
+						if(j==0)
+						{
+							newCell.innerHTML = teste[i]["codigo"];
+						}else if(j==1)
+						{
+							newCell.innerHTML = teste[i]["placa"];
+						}else if(j==2)
+						{
+							newCell.innerHTML = teste[i]["dataentrada"];
+						}else if(j==3)
+						{
+							newCell.innerHTML = teste[i]["status"];
+						}
+						else if(j==4)
+						{
+							newCell.innerHTML = "<button onClick='pagarTicketTable(this)'>Pagar</button>";
+						}
+					}
+				}
+				
+			}
+			//up.innerHTML = toString(Date);
+		}else
+		{
+			alert("Nenhum registro encontrado no banco de dados.")
+		}
+	}
+}
+
+function buscaVeiculosPagoNaPag() {
+	let url = `http://localhost:5000/Veiculos/`
+
+axios.get(url)
+	.then(response => {
+		//console.log(response.data.length);
+		criaListaDinamica(response.data);
+	})
+	.catch(error  =>  {
+		alert(error)	
+	})
+
+	const criaListaDinamica = ( veiculos ) => {
+		let tabela = window.document.getElementById("tableTicketPago");
+		let novoLength = 0;
+		novoLength = veiculos.length;
+		teste = Object.values(veiculos);
+		let up = window.document.getElementById("updated");
+		const ulVeiculos = document.getElementById('veiculos');
+		//console.log(novoLength);
+		veiculos.map(veiculo => {
+			//alert(veiculo.status)
+			// if (veiculo.status === 10)
+			// {
+			// 	const listaVeiculo = document.createElement('li');
+			// 	listaVeiculo.innerHTML = `Codigo: ${veiculo.codigo} - Placa: ${veiculo.placa} - Data de Entrada: ${veiculo.dataentrada}`;
+			// 	ulVeiculos.appendChild(listaVeiculo);
+			// 	//alert("TICKET LIBERADOS")
+		})
+		if(novoLength != 0)
+		{
+			//var defini = [codigo, placa, dataentrada, status];
+			for(i=0; i < novoLength; i++)
+			{
+				if(teste[i]["status"] == 2)
+				{
+					var novaLinha = tabela.insertRow(i);
+
+					for(j=0; j<5; j++)
+					{
+						newCell = novaLinha.insertCell(j);
+						if(j==0)
+						{
+							newCell.innerHTML = teste[i]["codigo"];
+						}else if(j==1)
+						{
+							newCell.innerHTML = teste[i]["placa"];
+						}else if(j==2)
+						{
+							newCell.innerHTML = teste[i]["dataentrada"];
+						}else if(j==3)
+						{
+							newCell.innerHTML = teste[i]["datasaida"];
+						}
+						else if(j==4)
+						{
+							newCell.innerHTML = teste[i]["status"];
+						}
+					}
+				}
+				
+			}
+			//up.innerHTML = toString(Date);
+		}else
+		{
+			alert("Nenhum registro encontrado no banco de dados.");
+		}
 	}
 }
 
 function pagarTicketTable(linha){
 	let tabela = window.document.getElementById("tableTicketNaoPago");
+	let lin = linha.parentNode.parentNode.rowIndex - 1;
+	cod_cell = tabela.rows[lin].cells[0].firstChild.nodeValue;
+	alert(cod_cell);
+	localStorage.setItem('selected',cod_cell);
+	window.location.href = "../caixa_pag/pagamento.html";
+}
+
+function pagarTicketTableNaPag(linha){
+	let tabela = window.document.getElementById("tableTicketNaoPago");
 	let i = linha.parentNode.parentNode.rowIndex - 1;
 	let plac = document.getElementById("dados[0]");
 	alert(linha);
 	if (plac !== null){
-	  var tab = document.getElementById("tableTicketNaoPago");
-	  var linTab = tab.rows.length;
-	  var cell = tab.rows[i].cells[0];
-  
-	  for(j=0; j < defini.length; j++){
-		//console.log(localStorage.getItem(i + "." + j + "." + defini[j]));
-		//localStorage.removeItem(i + "." + j + "." + defini[j]);       
-		var dados = document.getElementById("dados["+j+"]");
-		//console.log(dados);
-		dados.innerHTML = localStorage.getItem(i + "." + j + "." + defini[j]);
-	  }
-	  
+		var tab = document.getElementById("tableTicketNaoPago");
+		var linTab = tab.rows.length;
+		var cell = tab.rows[i].cells[0];
+		for(j=0; j < defini.length; j++){
+			//console.log(localStorage.getItem(i + "." + j + "." + defini[j]));
+			//localStorage.removeItem(i + "." + j + "." + defini[j]);       
+			var dados = document.getElementById("dados["+j+"]");
+			//console.log(dados);
+			dados.innerHTML = localStorage.getItem(i + "." + j + "." + defini[j]);
+		}
 	  //console.log(tab.rowIndex(0));
 	  //console.log(cell.innerText);
-	  
 	  //plac.innerHTML = "Teste";
-  
 	}else{
-	  window.location.href = "../caixa_pag/pagamento.html";
+		window.location.href = "../caixa_pag/pagamento.html";
 	}
-  }
+}
+/*
+
+
 /*
 function buscaVeiculosPagos () {
 	let url = `http://localhost:5000/Veiculos/`
