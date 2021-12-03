@@ -6,12 +6,51 @@
 //const status = require("status");
 
 function buscaVeiculo () {
-	let codigo = document.getElementById('pesquisa').value
+	let codigo = document.getElementById('dados[0]').value
 	let url = `http://localhost:5000/Veiculos/${codigo}`
 
 	axios.get(url)
 	.then(response => {
 		mostraDados (response.data)		
+	})
+	.catch(error  =>  {
+		if (error.response) {
+			const msg = new function buscaVeiculo () {
+				let codigo = document.getElementById('dados[0]').value
+				let url = `http://localhost:5000/Veiculos/${codigo}`
+			
+				axios.get(url)
+				.then(response => {
+					mostraDados (response.data)		
+				})
+				.catch(error  =>  {
+					if (error.response) {
+						const msg = new Comunicado (error.response.data.codigo, 
+													error.response.data.mensagem, 
+													error.response.data.descricao);
+						alert(msg.get());
+					}	
+				})
+			
+				event.preventDefault()
+			}
+			omunicado (error.response.data.codigo, 
+										error.response.data.mensagem, 
+										error.response.data.descricao);
+			alert(msg.get());
+		}	
+	})
+
+	event.preventDefault()
+}
+
+function buscaVeiculoParaPag() {
+	let codigo = document.getElementById('dados[0]').value
+	let url = `http://localhost:5000/Veiculos/${codigo}`
+
+	axios.get(url)
+	.then(response => {
+		pagarTicket (response.data)		
 	})
 	.catch(error  =>  {
 		if (error.response) {
@@ -24,6 +63,8 @@ function buscaVeiculo () {
 
 	event.preventDefault()
 }
+
+
 
 function mostraDados (dados, msg) {
 	document.getElementById('codigo')     .innerHTML = `Código		    : ${dados.codigo}`
@@ -137,7 +178,14 @@ axios.get(url)
 						newCell.innerHTML = teste[i]["dataentrada"];
 					}else if(j==3)
 					{
-						newCell.innerHTML = teste[i]["status"];
+						if(teste[i]["status"] == 1){
+							newCell.innerHTML = "Aberto";
+						}else if (teste[i]["status"] == 2){
+							newCell.innerHTML = "Pago/Liberado";
+						}else{
+							newCell.innerHTML = "Encerrado";
+						}
+						
 					}else if(j==4)
 					{
 						newCell.innerHTML = "<button onClick='pagarTicketTable(this)'>Pagar</button>";						
@@ -152,6 +200,59 @@ axios.get(url)
 		}
 	}
 }
+
+
+function pagarTicket(dadosTic){
+	var nTicket = window.document.getElementById("dados[0]").innerText;
+	var nTicket1 = window.document.getElementById("ticket");
+	//alert(nTicket);
+
+	if(nTicket === "" || null){
+	  alert("Favor digitar um número de ticket para a pesquisa");
+	  window.document.getElementById("ticket").focus();
+	}else{
+	  //alert("Vai Pagar");
+	  var qtdeItensDB = localStorage.length / 9;
+	  var buscaTick = buscaTicket(nTicket);
+	  if (buscaTick === true){
+		//alert(confirm("Confirma?"));
+		if (confirm("Confirma o pagamento do ticket?")){
+		  for(i=0; i < qtdeItensDB; i++){
+			if (localStorage.getItem(i + "." + defini.indexOf('num') + "." + defini[0]) == nTicket){
+			  //var novaLinha = tabela.insertRow(i);
+			  //for(j=0; j < defini.length; j++){
+				//console.log(localStorage.getItem(i + "." + 0 + "." + defini[j]));
+				// var num = localStorage.getItem(i + "." + defini.indexOf('num') + "." + defini[0]);
+				// var placa = localStorage.getItem(i + "." + defini.indexOf('placa') + "." + defini[1]);
+				// var dia = localStorage.getItem(i + "." + defini.indexOf('dia') + "." + defini[2]);
+				// var mes = localStorage.getItem(i + "." + defini.indexOf('mes') + "." + defini[3]);
+				// var ano = localStorage.getItem(i + "." + defini.indexOf('ano') + "." + defini[4]);
+				// var hora = localStorage.getItem(i + "." + defini.indexOf('hora') + "." + defini[5]);
+				// var minuto = localStorage.getItem(i + "." + defini.indexOf('minuto') + "." + defini[6]);
+				localStorage.setItem(i + "." + defini.indexOf('pago') + "." + defini[7], "S");
+				// var saiu = localStorage.getItem(i + "." + defini.indexOf('saiu') + "." + defini[8]);
+				//var resul = [num, placa, dia, mes, ano, hora, minuto, pago, saiu];
+				//plac.innerHTML = placa;
+				// for(j=0; j <resul.length; j++){
+				//   document.getElementById("dados["+j+"]").innerHTML = resul[j];
+				// }
+				window.location.reload();
+	
+			}
+		  }
+		}else{
+		  for(j=0; j < 9; j++){
+			window.document.getElementById("dados["+j+"]").innerText = "";
+		  }
+		  window.document.getElementById("ticket").value = "";
+		  window.document.getElementById("ticket").focus();
+		}
+		
+  
+	  }
+	
+	}
+  }
 
 function buscaVeiculosEmAbertoNaPag() {
 	let url = `http://localhost:5000/Veiculos/`
@@ -205,11 +306,11 @@ axios.get(url)
 							newCell.innerHTML = teste[i]["dataentrada"];
 						}else if(j==3)
 						{
-							newCell.innerHTML = teste[i]["status"];
+							newCell.innerHTML = "Aberto";
 						}
 						else if(j==4)
 						{
-							newCell.innerHTML = "<button onClick='pagarTicketTable(this)'>Pagar</button>";
+							newCell.innerHTML = "<button onClick='pagarTicketTableNaPag(this)'>Pagar</button>";
 						}
 					}
 				}
@@ -296,33 +397,26 @@ axios.get(url)
 function pagarTicketTable(linha){
 	let tabela = window.document.getElementById("tableTicketNaoPago");
 	let lin = linha.parentNode.parentNode.rowIndex - 1;
-	cod_cell = tabela.rows[lin].cells[0].firstChild.nodeValue;
-	alert(cod_cell);
+	let cod_cell = tabela.rows[lin].cells[0].firstChild.nodeValue;
+	//alert(cod_cell);
 	localStorage.setItem('selected',cod_cell);
 	window.location.href = "../caixa_pag/pagamento.html";
 }
 
 function pagarTicketTableNaPag(linha){
-	let tabela = window.document.getElementById("tableTicketNaoPago");
+	var tabela = window.document.getElementById("tableTicketNaoPago");
 	let i = linha.parentNode.parentNode.rowIndex - 1;
-	let plac = document.getElementById("dados[0]");
-	alert(linha);
-	if (plac !== null){
-		var tab = document.getElementById("tableTicketNaoPago");
-		var linTab = tab.rows.length;
-		var cell = tab.rows[i].cells[0];
-		for(j=0; j < defini.length; j++){
-			//console.log(localStorage.getItem(i + "." + j + "." + defini[j]));
-			//localStorage.removeItem(i + "." + j + "." + defini[j]);       
-			var dados = document.getElementById("dados["+j+"]");
-			//console.log(dados);
-			dados.innerHTML = localStorage.getItem(i + "." + j + "." + defini[j]);
-		}
-	  //console.log(tab.rowIndex(0));
-	  //console.log(cell.innerText);
-	  //plac.innerHTML = "Teste";
-	}else{
-		window.location.href = "../caixa_pag/pagamento.html";
+	let lin = linha.parentNode.parentNode.rowIndex - 1;
+	let cod_cell = tabela.rows[lin].cells[0].firstChild.nodeValue;
+	//let plac = document.getElementById("dados[0]");
+	let taman = tabela.rows[lin].cells.length;
+	alert(tabela.rows[lin].cells.length);
+	for(j=0; j <taman ; j++){
+		//console.log(localStorage.getItem(i + "." + j + "." + defini[j]));
+		//localStorage.removeItem(i + "." + j + "." + defini[j]);       
+		var dados = document.getElementById("dados["+j+"]");
+		//console.log(dados);
+		dados.innerHTML = tabela.rows[i].cells[j].firstChild.nodeValue;
 	}
 }
 /*
