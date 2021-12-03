@@ -44,22 +44,36 @@ function buscaVeiculo () {
 	event.preventDefault()
 }
 
-function buscaVeiculoParaPag() {
-	let codigo = document.getElementById('dados[0]').value
-	let url = `http://localhost:5000/Veiculos/${codigo}`
+function buscaVeiculosParaPag() {
+	let codigo = document.getElementById('dados[0]').value;
+	let pesq = window.document.getElementById("ticket");
+	let url = `http://localhost:5000/Veiculos/${codigo}`;
+	console.log(codigo);
+	if(codigo != undefined){
+		alert(codigo);
+	}
 
-	axios.get(url)
-	.then(response => {
-		pagarTicket (response.data)		
-	})
-	.catch(error  =>  {
-		if (error.response) {
-			const msg = new Comunicado (error.response.data.codigo, 
-										error.response.data.mensagem, 
-										error.response.data.descricao);
-			alert(msg.get());
-		}	
-	})
+	if (codigo != undefined)
+	{
+		axios.get(url)
+		.then(response => {
+			pagarTicket (response.data)		
+		})
+		.catch(error  =>  {
+			if (error.response) {
+				const msg = new Comunicado (error.response.data.codigo, 
+											error.response.data.mensagem, 
+											error.response.data.descricao);
+				alert(msg.get());
+			}	
+		})
+	}else if(codigo == 0 || codigo == null){
+		alert("Você deve entrar com o código do ticket para a pesquisa");
+		pesq.value = "";
+		pesq.focus();
+	}
+
+	
 
 	event.preventDefault()
 }
@@ -410,7 +424,7 @@ function pagarTicketTableNaPag(linha){
 	let cod_cell = tabela.rows[lin].cells[0].firstChild.nodeValue;
 	//let plac = document.getElementById("dados[0]");
 	let taman = tabela.rows[lin].cells.length;
-	alert(tabela.rows[lin].cells.length);
+	//alert(tabela.rows[lin].cells.length);
 	for(j=0; j <taman ; j++){
 		//console.log(localStorage.getItem(i + "." + j + "." + defini[j]));
 		//localStorage.removeItem(i + "." + j + "." + defini[j]);       

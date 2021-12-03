@@ -84,7 +84,7 @@ function Veiculos (bd)
 		// console.log(typeof ret);
 		// console.log(ret.rows.length);
 		//console.log(ret.rows);
-		console.log(ret.rows);
+		
 		return ret.rows;
 	}
 		
@@ -96,7 +96,7 @@ function Veiculos (bd)
 		            "FROM Veiculos WHERE Codigo=:0";
 		const dados = [codigo];
 		ret =  await conexao.execute(sql,dados);
-		
+		console.log(ret.rows);
 		return ret.rows;
 	}
 
