@@ -13,7 +13,7 @@
   }
   
   body{
-    background: url('../img/park\ \(8\).jpg') no-repeat center;
+    
     background-size: cover; 
     min-height: 100vh;
     display: flex;
@@ -628,4 +628,63 @@ color: white;
 }
 form input{
   outline: 0;
+}
+/* 
+table {
+  width: 100%;
+  height: auto ;
+  border-collapse: inherit;
+  border: 2px solid rgba(62, 25, 148, 0.274);
+  letter-spacing: 1px;
+  font-family: sans-serif;
+  font-size: .8rem;
+  align-content: center;
+  align-items: center;
+} 
+.tit-prin{
+  font-family: sans-serif;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+  caption-side: top;
+  background-color: grey;
+  color: #fff;
+}*/
+
+.tit-pag{
+  font-family: sans-serif;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  caption-side: top;
+  background-color:beige;
+  color: blue;
+  border: 1px solid;
+}
+
+.tit-nonpag{
+  font-family: sans-serif;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  caption-side: top;
+  background-color:beige;
+  color: red;
+  border: 1px solid;
+}
+
+th[scope="col"] {
+  background-color: #696969;
+  color: #fff;
+  border: 1px solid;
+}
+
+th[scope="row"] {
+  background-color: #d7d9f2;
+  color: darkblue;
+}
+
+tr, td, th {
+  border: 1px solid #696969;
+  color: #fff;
 }

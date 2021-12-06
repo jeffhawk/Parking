@@ -46,8 +46,8 @@ function Veiculos (bd)
 	{
 		const conexao = await this.bd.getConexao();
 		
-		const sql1 = "INSERT INTO Veiculos (Codigo,Placa,DataEntrada, Status) "+
-		"VALUES (:0,:1,sysdate,1)";   // 1 - ABERTO;
+		const sql1 = "INSERT INTO Veiculos (Codigo,Placa,DataEntrada,DataSaida, Status) "+
+		"VALUES (:0,:1,sysdate,'',1)";   // 1 - ABERTO;
 		const dados = [veiculo.codigo,veiculo.placa];
 		console.log(sql1, dados);
 		await conexao.execute(sql1,dados);
@@ -57,18 +57,19 @@ function Veiculos (bd)
 	}	
 
 	
-	this.update = async function (codigo)
+	this.update = async function (veiculo)
 	{
 			const conexao = await this.bd.getConexao();
 			
-			const sql1 = "UPDATE CODIGO,PLACA "
-			"VALUES (:0,:1,,sysdate,2)";   // 2 - PAGO/LIBERADO
-			const dados = [veiculo.codigo,veiculo.placa];
-			console.log(sql1, dados);
-			await conexao.execute(sql1,dados);
+	//if (codigo != undefined)
 			
+			const sql1 = "UPDATE Veiculos SET Status = 2 WHERE Codigo='"+veiculo.codigo+"'"   // 2 - PAGO/LIBERADO
+			const dados = [veiculo.codigo,veiculo.placa];
+			//console.log(sql1, dados);
+			await conexao.execute(sql1);
 			const sql2 = 'COMMIT';
-			await conexao.execute(sql2);	
+			await conexao.execute(sql2);
+			
 	}
 	
 	this.recupereTodos = async function ()
@@ -172,27 +173,29 @@ async function inclusao (req, res)
 
 async function atualizar (req, res)
 {
-    if (req.body.codigo || req.body.placa)
+	//console.log(req.body.codigo);
+    if (!req.body.codigo || !req.body.placa)
     {
-        const erro1 = new Comunicado ('DdI','Dados incompletos',
-		                  'Não foram informados todos os dados do veículo');
-        return res.status(422).json(erro1);
+        // const erro1 = new Comunicado ('DdI','Dados incompletos',
+		//                   'Não foram informados todos os dados do veículo');
+        // return res.status(422).json(erro1);
+		
     }
     
-    const veiculo = new Veiculo (req.body.codigo,req.body.placa,req.body.dataentrada,"");
-
+    const veiculo = new Veiculo (req.body.codigo,req.body.placa,req.body.dataentrada,req.body.datasaida,req.body.status);
     try
     {
-        await  global.veiculos.inclua(veiculo);
+        await  global.veiculos.update(veiculo);
+		//console.log(veiculo.codigo);
         const  sucesso = new Comunicado ('IBS','Atualizacao bem sucedida',
 		                  'O veículo foi incluído com sucesso');
         return res.status(201).json(sucesso);
 	}
 	catch (erro)
 	{
-		
+		console.log(erro);		
 		const  erro2 = new Comunicado ('LJE','Atualizacao ja feita',
-		                  'Já foi fita a atualizacao');
+		                  'Já foi feita a atualizacao');
         return res.status(409).json(erro2);
     }
 }
@@ -262,7 +265,7 @@ async function recuperacaoDeUm (req, res)
 	else
 	{
 		ret = ret[0];
-		ret = new Veiculo (ret[0],ret[1],ret[2],ret[3]);
+		ret = new Veiculo (ret[0],ret[1],ret[2],ret[3],ret[4]);
 		return res.status(200).json(ret);
 	}
 }
