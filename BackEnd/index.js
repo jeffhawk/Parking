@@ -59,16 +59,35 @@ function Veiculos (bd)
 	
 	this.update = async function (veiculo)
 	{
-			const conexao = await this.bd.getConexao();
-			
-	//if (codigo != undefined)
-			
+		const conexao = await this.bd.getConexao();
+		console.log(veiculo.status);
+		
+		if (veiculo.status == 1)
+		{
+			console.log("é para atualizar - Pagar");
 			const sql1 = "UPDATE Veiculos SET Status = 2 WHERE Codigo='"+veiculo.codigo+"'"   // 2 - PAGO/LIBERADO
 			const dados = [veiculo.codigo,veiculo.placa];
 			//console.log(sql1, dados);
 			await conexao.execute(sql1);
 			const sql2 = 'COMMIT';
 			await conexao.execute(sql2);
+		}
+		else if(veiculo.status == 2)
+		{
+			console.log("é para atualizar - Sair");
+			const sql3 = "UPDATE Veiculos SET DataSaida = 'sysdate', Status = 10 WHERE Codigo='"+veiculo.codigo+"'"   // 10 - SAIU/ENCERROU
+			const dados = [veiculo.codigo,veiculo.placa];
+			//console.log(sql1, dados);
+			await conexao.execute(sql3);
+			const sql4 = 'COMMIT';
+			await conexao.execute(sql4);
+		}
+		// }else
+		// {
+		// 	console.log("Veículo já saiu do estacionamento!!");
+		// 	//return msg = ("Veículo já saiu do estacionamento!!");
+		// }
+			
 			
 	}
 	
@@ -105,7 +124,7 @@ function Veiculos (bd)
 	{
 		const conexao = await this.bd.getConexao();
 		
-		const sql = "SELECT Codigo,Placa,TO_CHAR(DataEntrada, 'YYYY-MM-DD HH24:MI:SS'), Status "+
+		const sql = "SELECT Codigo,Placa,TO_CHAR(DataEntrada, 'YYYY-MM-DD HH24:MI:SS'), TO_CHAR(DataSaida, 'YYYY-MM-DD HH24:MI:SS'), Status "+
 		            "FROM Veiculos WHERE Status=1";
 		
 		ret =  await conexao.execute(sql);
@@ -176,28 +195,30 @@ async function atualizar (req, res)
 	//console.log(req.body.codigo);
     if (!req.body.codigo || !req.body.placa)
     {
-        // const erro1 = new Comunicado ('DdI','Dados incompletos',
-		//                   'Não foram informados todos os dados do veículo');
-        // return res.status(422).json(erro1);
+        const erro1 = new Comunicado ('DdI','Dados incompletos',
+		                   'Não foram informados todos os dados do veículo');
+        return res.status(422).json(erro1);
 		
-    }
-    
-    const veiculo = new Veiculo (req.body.codigo,req.body.placa,req.body.dataentrada,req.body.datasaida,req.body.status);
-    try
-    {
-        await  global.veiculos.update(veiculo);
-		//console.log(veiculo.codigo);
-        const  sucesso = new Comunicado ('IBS','Atualizacao bem sucedida',
-		                  'O veículo foi incluído com sucesso');
-        return res.status(201).json(sucesso);
+    }else
+	{    
+		const veiculo = new Veiculo (req.body.codigo,req.body.placa,req.body.dataentrada,req.body.datasaida,req.body.status);
+		try
+		{
+			await  global.veiculos.update(veiculo);
+			//console.log(veiculo.codigo);
+			const  sucesso = new Comunicado ('IBS','Atualizacao bem sucedida',
+							'O veículo foi atualizado com sucesso');
+			//console.log(veiculo.codigo);
+			return res.status(201).json(sucesso);
+		}
+		catch (erro)
+		{
+			console.log(erro);		
+			const  erro2 = new Comunicado ('LJE','Atualizacao ja feita',
+							'Já foi feita a atualizacao');
+			return res.status(409).json(erro2);
+		}
 	}
-	catch (erro)
-	{
-		console.log(erro);		
-		const  erro2 = new Comunicado ('LJE','Atualizacao ja feita',
-		                  'Já foi feita a atualizacao');
-        return res.status(409).json(erro2);
-    }
 }
 
 

@@ -1,5 +1,7 @@
 //const { response } = require("express");
 
+//const status = require("status")
+
 //const { DATE } = require("oracledb");
 //const { isDate } = require("util/types");
 
@@ -47,13 +49,26 @@ function buscaVeiculo () {
 function pagarVeiculosNaPag() {
 	let codigo = window.document.getElementById("dados[0]").textContent;
 	let placa = window.document.getElementById("dados[1]").textContent;
+	let st = window.document.getElementById("dados[3]").textContent;
 	let pesq = window.document.getElementById("ticket");
 	let url = `http://localhost:5000/Veiculos/${codigo}`;
 	let url1 = `http://localhost:5000/Veiculos/`;
-	
-	if (codigo != undefined)
+	let status = 0;
+	if(st == "Aberto")
 	{
-		let objVeiculo = { codigo: parseInt(codigo), placa: placa, datadentrada: '', datasaida: '', status: 2};
+		status = 1;
+	}else if(st == "Pago")
+	{
+		status = 2;
+	}else
+	{
+		status = 10;
+	}
+	
+	if (codigo != undefined || codigo != 0 || codigo != null || codigo != "")
+	{
+		
+		let objVeiculo = { codigo: parseInt(codigo), placa: placa, status: status};
 		axios.put(url1,objVeiculo)
 		.then(response => {
 			//pagarTicket(response.data);	
@@ -61,9 +76,9 @@ function pagarVeiculosNaPag() {
 				const msg = new Comunicado (response.data.codigo, 
 											response.data.mensagem, 
 											response.data.descricao);
-				alert(msg.descricao);
+				alert(msg.descricao + '\nTicket pago com sucesso!!!!');
 				console.log(msg.get());
-				alert('Ticket pago com sucesso!!!!');
+				console.log(response.data);
 				location.reload();
 			}
 		})
@@ -75,7 +90,7 @@ function pagarVeiculosNaPag() {
 				alert(msg.get());
 			}	
 		})
-	}else if(codigo == 0 || codigo == null){
+	}else {
 		alert("Você deve entrar com o código do ticket para a pesquisa");
 		pesq.value = "";
 		pesq.focus();
@@ -488,6 +503,77 @@ function pagarTicketTableNaPag(linha){
 	}
 }
 
+function buscarTicket()
+{
+	let ticket = window.document.getElementById("ticket").value;
+
+	//Verifica se tem algum dado digitado na caixa de texto para pesquisa.
+	if (ticket == 0 || ticket == "" || ticket == null)
+	{
+		alert(ticket);
+	}
+	
+}
+
+function sairVeiculoNaPag(linha){
+	var tabela = window.document.getElementById("tableTicketPago");
+	let lin = linha.parentNode.parentNode.rowIndex - 1;
+	//let cod_cell = tabela.rows[lin].cells[0].firstChild.nodeValue;
+	//alert(cod_cell);
+	let codigo = tabela.rows[lin].cells[0].firstChild.nodeValue;
+	let placa = tabela.rows[lin].cells[1].firstChild.nodeValue;
+	let status = tabela.rows[lin].cells[2].firstChild.nodeValue;
+	let pesq = window.document.getElementById("ticket");
+	let url = `http://localhost:5000/Veiculos/${codigo}`;
+	let url1 = `http://localhost:5000/Veiculos/`;
+	//let status = 0;
+	// alert(st);
+	// if(st == "Aberto")
+	// {
+	// 	status = 1;
+	// }else if(st == "Pago")
+	// {
+	// 	status = 2;
+	// }else
+	// {
+	// 	status = 10;
+	// }
+	
+	if (codigo != undefined || codigo != 0 || codigo != null || codigo != "")
+	{
+		
+		let objVeiculo = { codigo: parseInt(codigo), placa: placa, status: status};
+		axios.put(url1,objVeiculo)
+		.then(response => {
+			//pagarTicket(response.data);	
+			if (response.data){
+				const msg = new Comunicado (response.data.codigo, 
+											response.data.mensagem, 
+											response.data.descricao);
+				alert(msg.descricao + '\nTicket pago com sucesso!!!!');
+				console.log(msg.get());
+				//console.log(response.data);
+				location.reload();
+			}
+		})
+		.catch(error  =>  {
+			if (error.response) {
+				const msg = new Comunicado (error.response.data.codigo, 
+											error.response.data.mensagem, 
+											error.response.data.descricao);
+				alert(msg.get());
+			}	
+		})
+	}else {
+		alert("Você deve entrar com o código do ticket para a pesquisa");
+		pesq.value = "";
+		pesq.focus();
+	}
+	event.preventDefault()
+	
+	
+	
+}
 
 function Comunicado (codigo,mensagem,descricao)
 {
