@@ -75,7 +75,8 @@ function Veiculos (bd)
 		else if(veiculo.status == 2)
 		{
 			console.log("é para atualizar - Sair");
-			const sql3 = "UPDATE Veiculos SET DataSaida = 'sysdate', Status = 10 WHERE Codigo='"+veiculo.codigo+"'"   // 10 - SAIU/ENCERROU
+			dat = Date();
+			const sql3 = "UPDATE Veiculos SET DataSaida = '"+sysdate+"', Status = 10 WHERE Codigo='"+veiculo.codigo+"'"   // 10 - SAIU/ENCERROU
 			const dados = [veiculo.codigo,veiculo.placa];
 			//console.log(sql1, dados);
 			await conexao.execute(sql3);
