@@ -655,7 +655,7 @@ function sairVeiculoNaPag(linha){
 				alert(msg.descricao + '\nTicket pago com sucesso!!!!');
 				// console.log(msg.get());
 				//console.log(response.data);
-				location.reload();
+				location.replace("../checagem_pagos/index3.html");
 			}
 		})
 		.catch(error  =>  {

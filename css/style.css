@@ -6,7 +6,7 @@
 section.bg{
     width: 100vw;
     height: 100vh;
-    background: rgb(100,100,100);
+    background: silver;
 }
 
 a.cta{
@@ -14,8 +14,8 @@ a.cta{
     max-width: 600px;
     padding: 8px 20px;
     text-align: center;
-    background: black ;
-    color: white;
+    background: green ;
+    color: yellow;
     font-size: 23px;
   
     border-radius: 10px;
