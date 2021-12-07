@@ -60,11 +60,11 @@ function Veiculos (bd)
 	this.update = async function (veiculo)
 	{
 		const conexao = await this.bd.getConexao();
-		console.log(veiculo.status);
+		// console.log(veiculo.status);
 		
 		if (veiculo.status == 1)
 		{
-			console.log("é para atualizar - Pagar");
+			// console.log("é para atualizar - Pagar");
 			const sql1 = "UPDATE Veiculos SET Status = 2 WHERE Codigo='"+veiculo.codigo+"'"   // 2 - PAGO/LIBERADO
 			const dados = [veiculo.codigo,veiculo.placa];
 			//console.log(sql1, dados);
@@ -74,9 +74,10 @@ function Veiculos (bd)
 		}
 		else if(veiculo.status == 2)
 		{
-			console.log("é para atualizar - Sair");
-			dat = Date();
-			const sql3 = "UPDATE Veiculos SET DataSaida = '"+sysdate+"', Status = 10 WHERE Codigo='"+veiculo.codigo+"'"   // 10 - SAIU/ENCERROU
+			// console.log("é para atualizar - Sair");
+			// dat = Date();
+			// console.log(dat);
+			const sql3 = "UPDATE Veiculos SET DataSaida=systimestamp, Status=10 WHERE Codigo='"+veiculo.codigo+"'"   // 10 - SAIU/ENCERROU
 			const dados = [veiculo.codigo,veiculo.placa];
 			//console.log(sql1, dados);
 			await conexao.execute(sql3);

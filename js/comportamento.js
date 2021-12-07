@@ -78,7 +78,7 @@ function pagarVeiculosNaPag() {
 											response.data.descricao);
 				alert(msg.descricao + '\nTicket pago com sucesso!!!!');
 				console.log(msg.get());
-				console.log(response.data);
+				//console.log(response.data);
 				location.reload();
 			}
 		})
@@ -522,12 +522,12 @@ function sairVeiculoNaPag(linha){
 	//alert(cod_cell);
 	let codigo = tabela.rows[lin].cells[0].firstChild.nodeValue;
 	let placa = tabela.rows[lin].cells[1].firstChild.nodeValue;
-	let status = tabela.rows[lin].cells[2].firstChild.nodeValue;
+	let status = tabela.rows[lin].cells[3].firstChild.nodeValue;
 	let pesq = window.document.getElementById("ticket");
 	let url = `http://localhost:5000/Veiculos/${codigo}`;
 	let url1 = `http://localhost:5000/Veiculos/`;
 	//let status = 0;
-	// alert(st);
+	// alert(status);
 	// if(st == "Aberto")
 	// {
 	// 	status = 1;
