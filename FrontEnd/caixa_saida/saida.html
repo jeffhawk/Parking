@@ -7,37 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/estilos.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="script.js"></script>
   <title>Document</title>
-  <script>
-    function inicia(){
-        atualizaTabelaNaoPago();
-        atualizaTabelaPago();
-    }
-    window.addEventListener("load", inicia);
-
-    function time()
-      {
-      today=new Date();
-      h=today.getHours();
-      m=today.getMinutes();
-      s=today.getSeconds();
-      document.getElementById('txt').innerHTML=h+":"+m+":"+s;
-      setTimeout('time()',500);
-      }
-    
-    dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado");
-    monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro");
-    now = new Date;
-  </script>
 </head>
-<body onload="time()">
-  <style type="text/css">
-body {
- background-image: url("../caixa_pag/img/park\ \(9\).jpg"); /*https://wallpaperstock.net/parking-lot-at-night-wallpapers_35681_1280x720.jpg);*/
-}
-    </style> 
-    <div class="tableLeft">
+<body>
+    <div style="color: rebeccapurple;" class="tableLeft">
       <table title="TicketsPagos">
         <caption class="tit-pag">Tickets Pagos</caption>          
         <thead>
@@ -81,9 +56,6 @@ body {
         </div>
     
         <div id="subTittle">
-            <span style="color:white">
-                Placa do carro: XXXXXXX
-            </span>
         <br><br><br>
         <form action="">
           <span></span>
@@ -92,16 +64,8 @@ body {
         </form>
         <br><br>
           <button onclick="saida();" class="myButton">FINALIZAR</button>
-
-          <!-- <body > -->
             <br></br><p1 style="color: white;"><br><div id="txt"></div></p1></br>
      <p2 style="color: white;">
-      <script language=javascript type="text/javascript">
-        document.write("" + dayName[now.getDay() ] + ", " + now.getDate () + " de " + monName [now.getMonth() ]   +  " de "  +     now.getFullYear () + ". </h1>");
-      </script></p2>
-          <!-- </body> -->
-          
-          
           <br><br><br><br><br><br><br><br>
           <!-- -
           <span style="color:white">
@@ -180,7 +144,6 @@ body {
 
     <!-- <script src="js/jquery.js"></script>
     <script src="js/main.js"></script> -->
-    <script type="text/javascript" src="../js/script.js"></script>
   </body>
 </html>
 

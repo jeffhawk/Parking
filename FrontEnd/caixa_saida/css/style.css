@@ -1,12 +1,10 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body{
+    background-image: url("../img/park\ \(9\).jpg");
 }
 #bkg {
-    width: auto;
+    width: 100%;
     height: 65vh;
-    margin: 0 auto;
+    margin: 0 ;
     border: 8px solid #008DFF    ;
     border-radius: 7px;
 }
@@ -20,13 +18,15 @@
     padding-bottom: 5px;
 }
 #subTittle {
-    margin: 0 auto;
+    margin: 0;
     text-align: center;
     font-size: 1rem;
-    padding-top: 15px;
+    padding-top: 5px;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
-    padding-bottom: 5px;
+    padding-bottom: 2px;
+    height: 2px;
+    width: auto;
 }
 
 #centerBut {
@@ -141,17 +141,26 @@ background-color:#476e9e;
 position:relative;
 top:1px;
 }
-body {
-    background-image: url(https://wallpaperstock.net/parking-lot-at-night-wallpapers_35681_1280x720.jpg);
+p.ex1 {
+margin-left: 0%;
+color: white;
 }
-.box-sucesso{
-    margin-top: 10px;
-    display: none;
-    width: 100%;
-    height: 40px;
-    padding: 10px;
-    background:#5fb383;
-    text-align: center;
-    color: white;
+form input{
+    outline: 0;
 }
-                
+
+.tableLeft{
+    height: auto;
+    width: auto;
+    top: 0;
+    left: 0;
+    position: relative;
+  }
+  
+  .tableRight{
+    height: auto;
+    width: auto;
+    top: 0;
+    right: 0;
+    position: relative;
+  }

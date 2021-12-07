@@ -1,11 +1,4 @@
-//const { response } = require("express");
 
-//const status = require("status")
-
-//const { DATE } = require("oracledb");
-//const { isDate } = require("util/types");
-
-//const status = require("status");
 
 function buscaVeiculo () {
 	let codigo = document.getElementById('ticket').value

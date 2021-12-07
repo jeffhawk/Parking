@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>TICKETS EM ABERTO</title>
+    <script>
+      function inicia(){
+          //lerTabela();
+          buscaVeiculosEmAberto();
+      }
+      window.addEventListener("load", inicia);
+    </script>
+    <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+    <script src="../../js/comportamento.js"></script>
+</head>
+  <body style="background: rgb(100,100,100);">
+    <h2 style="text-align: center; font-size:20px; color:white;">TICKET EM ABERTOS!</h2>
+    <table title="Tickets não Pagos">
+      <caption class="tit-nonpag">Tickets Não Pagos</caption>
+      <thead>
+        <tr>
+          <th scope="col">Nº Ticket</th>
+          <th scope="col">Placa</th>
+          <th scope="col">Data</th>
+          <th scope="col">Status</th>
+          <th scope="col">Controle</th>
+        </tr>
+      </thead>
+      <!-- <tfoot>
+          <tr><td colspan="4">Atualizado em: </td></tr>
+      </tfoot> -->
+      <tbody id="tableTicketNaoPago">
+          
+      </tbody>
+    </table>
+
+    <!-- <script src="../js/script.js"></script> -->
+  </body>
+</html>
