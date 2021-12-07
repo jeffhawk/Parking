@@ -8,10 +8,12 @@
     <script>
       function inicia(){
           //lerTabela();
-          atualizaTabelaPagoNaoSaiu();
+          atualizaTabelaSaiu();
       }
       window.addEventListener("load", inicia);
     </script>
+    <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+    <script src="../js/comportamento.js"></script>
 </head>
 <style>
     table {
@@ -82,11 +84,11 @@
         <tr>
           <th scope="col">Nº Ticket</th>
           <th scope="col">Placa</th>
-          <th scope="col" colspan="3">Data</th>
-          <th scope="col" colspan="2">hora</th>
-          <th scope="col">Pago</th>
+          <th scope="col">Data Entrada</th>
+          <th scope="col">Data Saída</th>
+          <!-- <th scope="col">Pago</th>
           <th scope="col">Saiu?</th>
-          <th scope="col" colspan="2">Controle</th>
+          <th scope="col" colspan="2">Controle</th> -->
         </tr>
       </thead>
       <tfoot>
@@ -109,6 +111,5 @@
       </tbody>
 
     </table>
-    <script src="../js/script.js"></script>
 </body>
 </html>

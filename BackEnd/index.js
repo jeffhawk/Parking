@@ -49,7 +49,7 @@ function Veiculos (bd)
 		const sql1 = "INSERT INTO Veiculos (Codigo,Placa,DataEntrada,DataSaida, Status) "+
 		"VALUES (:0,:1,sysdate,'',1)";   // 1 - ABERTO;
 		const dados = [veiculo.codigo,veiculo.placa];
-		console.log(sql1, dados);
+		// console.log(sql1, dados);
 		await conexao.execute(sql1,dados);
 		
 		const sql2 = 'COMMIT';
@@ -99,7 +99,7 @@ function Veiculos (bd)
 		
 		const sql = "SELECT Codigo,Placa,TO_CHAR(DataEntrada, 'YYYY-MM-DD HH24:MI:SS'),TO_CHAR(DataSaida, 'YYYY-MM-DD HH24:MI:SS'),Status "+
 		            "FROM Veiculos";
-		console.log(sql);
+		// console.log(sql);
 		let ret;
 		ret =  await conexao.execute(sql);
 		// console.log('teste');

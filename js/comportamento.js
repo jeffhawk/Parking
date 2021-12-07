@@ -77,7 +77,7 @@ function pagarVeiculosNaPag() {
 											response.data.mensagem, 
 											response.data.descricao);
 				alert(msg.descricao + '\nTicket pago com sucesso!!!!');
-				console.log(msg.get());
+				// console.log(msg.get());
 				//console.log(response.data);
 				location.reload();
 			}
@@ -276,7 +276,7 @@ function atualizaTabelaPago () {
 			//var defini = [codigo, placa, dataentrada, status];
 			for(i=0; i < novoLength; i++)
 			{
-				alert(veiculos[i].status);
+				// alert(veiculos[i].status);
 				if(veiculos[i].status == 2)
 				{
 
@@ -307,7 +307,7 @@ function atualizaTabelaPago () {
 							
 						}else if(j==4)
 						{
-							newCell.innerHTML = "<button onClick='pagarTicketTable(this)'>Sair</button>";						
+							newCell.innerHTML = "<button onClick='sairTicketTable(this)'>Sair</button>";						
 						}
 						
 					}
@@ -321,6 +321,78 @@ function atualizaTabelaPago () {
 		}
 	}
 }
+
+function atualizaTabelaSaiu () {
+	let url = `http://localhost:5000/Veiculos/`
+
+	axios.get(url)
+	.then(response => {
+		//console.log(response.data.length);
+		criaListaDinamica(response.data);
+	})
+	.catch(error  =>  {
+		alert(error)	
+	})
+
+	const criaListaDinamica = ( veiculos ) => {
+		let tabela = window.document.getElementById("tableTicketPago");
+		let novoLength = 0;
+		novoLength = veiculos.length;
+		teste = Object.values(veiculos);
+		let up = window.document.getElementById("updated");
+		const ulVeiculos = document.getElementById('veiculos');
+		//console.log(novoLength);
+		veiculos.map(veiculo => {
+			//alert(veiculo.status)
+			// if (veiculo.status === 10)
+			// {
+			// 	const listaVeiculo = document.createElement('li');
+			// 	listaVeiculo.innerHTML = `Codigo: ${veiculo.codigo} - Placa: ${veiculo.placa} - Data de Entrada: ${veiculo.dataentrada}`;
+			// 	ulVeiculos.appendChild(listaVeiculo);
+			// 	//alert("TICKET LIBERADOS")
+		})
+		if(novoLength != 0)
+		{
+			let v=0;
+			//var defini = [codigo, placa, dataentrada, status];
+			for(i=0; i < novoLength; i++)
+			{
+				// alert(veiculos[i].status);
+				if(veiculos[i].status == 10)
+				{
+
+					var novaLinha = tabela.insertRow(v);
+					v++;
+
+					for(j=0; j<5; j++)
+					{
+						newCell = novaLinha.insertCell(j);
+						if(j==0)
+						{
+							newCell.innerHTML = teste[i]["codigo"];
+						}else if(j==1)
+						{
+							newCell.innerHTML = teste[i]["placa"];
+						}else if(j==2)
+						{
+							newCell.innerHTML = teste[i]["dataentrada"];
+						}else if(j==3)
+						{
+							newCell.innerHTML = teste[i]["datasaida"];;						
+						}
+						
+					}
+				}
+				
+			}
+			//up.innerHTML = toString(Date);
+		}else
+		{
+			alert("Nenhum registro encontrado no banco de dados.")
+		}
+	}
+}
+
 
 function buscaVeiculosEmAbertoNaPag() {
 	let url = `http://localhost:5000/Veiculos/`
@@ -506,24 +578,53 @@ function pagarTicketTableNaPag(linha){
 function buscarTicket()
 {
 	let ticket = window.document.getElementById("ticket").value;
+	let pesq = window.document.getElementById("ticket");
 
 	//Verifica se tem algum dado digitado na caixa de texto para pesquisa.
 	if (ticket == 0 || ticket == "" || ticket == null)
 	{
-		alert(ticket);
+		alert("Voce deve digitar um valor!");
+		pesq.value = "";
+		pesq.focus();
+	}else
+	{
+
 	}
 	
+}
+
+function sairTicketTable(linha){
+	var tabela = window.document.getElementById("tableTicketPago");
+	let i = linha.parentNode.parentNode.rowIndex - 1;
+	let lin = linha.parentNode.parentNode.rowIndex - 1;
+	let cod_cell = tabela.rows[lin].cells[0].firstChild.nodeValue;
+	//let plac = document.getElementById("dados[0]");
+	let taman = tabela.rows[lin].cells.length;
+	//alert(tabela.rows[lin].cells.length);
+	for(j=0; j <taman ; j++){
+		//console.log(localStorage.getItem(i + "." + j + "." + defini[j]));
+		//localStorage.removeItem(i + "." + j + "." + defini[j]);       
+		let dados = document.getElementById("dados["+j+"]");
+		//console.log(dados);
+		if(tabela.rows[i].cells[j].firstChild.nodeValue == null)
+		{
+
+		}else{
+			dados.innerHTML = tabela.rows[i].cells[j].firstChild.nodeValue;
+		}
+		
+	}
 }
 
 function sairVeiculoNaPag(linha){
 	var tabela = window.document.getElementById("tableTicketPago");
 	let lin = linha.parentNode.parentNode.rowIndex - 1;
+	let pesq = window.document.getElementById("ticket");
 	//let cod_cell = tabela.rows[lin].cells[0].firstChild.nodeValue;
 	//alert(cod_cell);
 	let codigo = tabela.rows[lin].cells[0].firstChild.nodeValue;
 	let placa = tabela.rows[lin].cells[1].firstChild.nodeValue;
 	let status = tabela.rows[lin].cells[3].firstChild.nodeValue;
-	let pesq = window.document.getElementById("ticket");
 	let url = `http://localhost:5000/Veiculos/${codigo}`;
 	let url1 = `http://localhost:5000/Veiculos/`;
 	//let status = 0;
@@ -551,7 +652,7 @@ function sairVeiculoNaPag(linha){
 											response.data.mensagem, 
 											response.data.descricao);
 				alert(msg.descricao + '\nTicket pago com sucesso!!!!');
-				console.log(msg.get());
+				// console.log(msg.get());
 				//console.log(response.data);
 				location.reload();
 			}
