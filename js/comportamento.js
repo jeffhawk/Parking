@@ -8,40 +8,38 @@
 //const status = require("status");
 
 function buscaVeiculo () {
-	let codigo = document.getElementById('dados[0]').value
+	let codigo = document.getElementById('ticket').value
 	let url = `http://localhost:5000/Veiculos/${codigo}`
 
 	axios.get(url)
 	.then(response => {
-		mostraDados (response.data)		
+		preencherDados(response.data);
 	})
 	.catch(error  =>  {
 		if (error.response) {
-			const msg = new function buscaVeiculo () {
-				let codigo = document.getElementById('dados[0]').value
-				let url = `http://localhost:5000/Veiculos/${codigo}`
-			
-				axios.get(url)
-				.then(response => {
-					mostraDados (response.data)		
-				})
-				.catch(error  =>  {
-					if (error.response) {
-						const msg = new Comunicado (error.response.data.codigo, 
-													error.response.data.mensagem, 
-													error.response.data.descricao);
-						alert(msg.get());
-					}	
-				})
-			
-				event.preventDefault()
-			}
-			omunicado (error.response.data.codigo, 
+			const msg = new Comunicado (error.response.data.codigo, 
 										error.response.data.mensagem, 
 										error.response.data.descricao);
 			alert(msg.get());
 		}	
 	})
+
+	const preencherDados = (veiculos) =>{
+		window.document.getElementById("dados[0]").textContent = veiculos.codigo;
+		window.document.getElementById("dados[1]").textContent = veiculos.placa;
+		window.document.getElementById("dados[2]").textContent = veiculos.dataentrada;
+		window.document.getElementById("dados[3]").textContent = veiculos.status;;
+			//console.log(dados);
+		veiculos.map(veiculo => {
+			//alert(veiculo.status)
+			// if (veiculo.status === 10)
+			// {
+			// 	const listaVeiculo = document.createElement('li');
+			// 	listaVeiculo.innerHTML = `Codigo: ${veiculo.codigo} - Placa: ${veiculo.placa} - Data de Entrada: ${veiculo.dataentrada}`;
+			// 	ulVeiculos.appendChild(listaVeiculo);
+			// 	//alert("TICKET LIBERADOS")
+		})
+	}
 
 	event.preventDefault()
 }
@@ -397,7 +395,7 @@ function atualizaTabelaSaiu () {
 function buscaVeiculosEmAbertoNaPag() {
 	let url = `http://localhost:5000/Veiculos/`
 
-axios.get(url)
+	axios.get(url)
 	.then(response => {
 		//console.log(response.data.length);
 		criaListaDinamica(response.data);
@@ -468,7 +466,7 @@ axios.get(url)
 function buscaVeiculosPagoNaPag() {
 	let url = `http://localhost:5000/Veiculos/`
 
-axios.get(url)
+	axios.get(url)
 	.then(response => {
 		//console.log(response.data.length);
 		criaListaDinamica(response.data);
@@ -575,23 +573,6 @@ function pagarTicketTableNaPag(linha){
 	}
 }
 
-function buscarTicket()
-{
-	let ticket = window.document.getElementById("ticket").value;
-	let pesq = window.document.getElementById("ticket");
-
-	//Verifica se tem algum dado digitado na caixa de texto para pesquisa.
-	if (ticket == 0 || ticket == "" || ticket == null)
-	{
-		alert("Voce deve digitar um valor!");
-		pesq.value = "";
-		pesq.focus();
-	}else
-	{
-
-	}
-	
-}
 
 function sairTicketTable(linha){
 	var tabela = window.document.getElementById("tableTicketPago");
