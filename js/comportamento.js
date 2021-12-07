@@ -28,7 +28,21 @@ function buscaVeiculo () {
 		window.document.getElementById("dados[0]").textContent = veiculos.codigo;
 		window.document.getElementById("dados[1]").textContent = veiculos.placa;
 		window.document.getElementById("dados[2]").textContent = veiculos.dataentrada;
-		window.document.getElementById("dados[3]").textContent = veiculos.status;;
+		let st = veiculos.status;
+		//let status = 0;
+		if(st == 1){
+			window.document.getElementById("dados[3]").textContent = "Aberto";
+		}else if (st == 2){
+			window.document.getElementById("dados[3]").textContent = "Pago/Liberado";
+		}else{
+			window.document.getElementById("dados[3]").textContent = "Encerrado";
+		}
+		
+		// if(status == 10)
+		// {
+			
+		// }
+
 			//console.log(dados);
 		veiculos.map(veiculo => {
 			//alert(veiculo.status)
@@ -51,11 +65,11 @@ function pagarVeiculosNaPag() {
 	let pesq = window.document.getElementById("ticket");
 	let url = `http://localhost:5000/Veiculos/${codigo}`;
 	let url1 = `http://localhost:5000/Veiculos/`;
-	let status = 0;
-	if(st == "Aberto")
+	let status;
+	if(st == "Aberto" || st == 1)
 	{
 		status = 1;
-	}else if(st == "Pago")
+	}else if(st == "Pago" || st == 2)
 	{
 		status = 2;
 	}else
@@ -63,6 +77,12 @@ function pagarVeiculosNaPag() {
 		status = 10;
 	}
 	
+	if(status == 10 || status == "Encerrado")
+	{
+		alert("Ticket já encerrado!");
+		return;
+	}
+
 	if (codigo != undefined || codigo != 0 || codigo != null || codigo != "")
 	{
 		
