@@ -60,7 +60,7 @@ function Veiculos (bd)
 	this.update = async function (veiculo)
 	{
 		const conexao = await this.bd.getConexao();
-		// console.log(veiculo.status);
+		//console.log(veiculo.status);
 		
 		if (veiculo.status == 1)
 		{
@@ -74,9 +74,9 @@ function Veiculos (bd)
 		}
 		else if(veiculo.status == 2)
 		{
-			// console.log("é para atualizar - Sair");
+			console.log("é para atualizar - Sair");
 			// dat = Date();
-			// console.log(dat);
+			//console.log(veiculo.placa);
 			const sql3 = "UPDATE Veiculos SET DataSaida=systimestamp, Status=10 WHERE Codigo='"+veiculo.codigo+"'"   // 10 - SAIU/ENCERROU
 			const dados = [veiculo.codigo,veiculo.placa];
 			//console.log(sql1, dados);
@@ -209,7 +209,7 @@ async function atualizar (req, res)
 			await  global.veiculos.update(veiculo);
 			//console.log(veiculo.codigo);
 			const  sucesso = new Comunicado ('IBS','Atualizacao bem sucedida',
-							'O veículo foi atualizado com sucesso');
+							'O veículo saiu do estacionamento com sucesso');
 			//console.log(veiculo.codigo);
 			return res.status(201).json(sucesso);
 		}

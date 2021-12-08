@@ -8,44 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <script src="script.js"></script>
+  <script>
+    function inicia(){
+      window.document.getElementById("codTicket").value = localStorage.getItem("selected");
+    }
+    window.addEventListener("load", inicia);
+  </script>
+  <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+  <script src="../../js/comportamento.js"></script>
   <title>Document</title>
 </head>
 <body>
-    <div style="color: rebeccapurple;" class="tableLeft">
-      <table title="TicketsPagos">
-        <caption class="tit-pag">Tickets Pagos</caption>          
-        <thead>
-            <tr>
-              <th scope="col">Nº Ticket</th>
-              <th scope="col">Placa</th>
-              <th scope="col" colspan="3">Data</th>
-              <th scope="col" colspan="2">hora</th>
-              <th scope="col">Pago</th>
-              <th scope="col">Saiu?</th>
-              <th scope="col" colspan="2">Controle</th>
-            </tr>
-          </thead>
-        <tfoot>
-            <tr><td colspan="4">Atualizado em: </td></tr>
-        </tfoot>
-        <tbody id="tableTicketPago">
-            <!-- <tr>
-                <th scope="row">100</th>
-                <td data-label="Ticket">L1C2</td>
-                <td>L1C3</td>
-            </tr>
-            <tr>
-                <th scope="row">200</th>
-                <td>teste1</td>
-                <td>teste1</td>
-            </tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr> -->
-        </tbody>
-      </table>
-    </div>
+    
 
     
     <div id="bkg" class="mainSaida">
@@ -60,90 +34,20 @@
         <form action="">
           <span></span>
           <label for="fname" style="color: white">Codigo do Ticket:</label><br>
-          <input type="text" name="fname" id="codTicket"><br>
+          <input type="text" id="codTicket"><br>
         </form>
         <br><br>
           <button onclick="saida();" class="myButton">FINALIZAR</button>
             <br></br><p1 style="color: white;"><br><div id="txt"></div></p1></br>
      <p2 style="color: white;">
           <br><br><br><br><br><br><br><br>
-          <!-- -
-          <span style="color:white">
-                Caso não tenha efetuado o pagamento, favor ir a aba de Suporte
-            </span>
-          <br><a href="#" class="myButton">SUPORTE</a> -->
-          
-          
-          
-      <!-- <table style="color:red">
-      <tr>
-      <th>TIPO - </th>
-        <th>Ticket</th>
-        <th>Placa</th>
-        <th>Saida</th>
-      
-      </tr>
-      <tr>
-      <th>PAGOS - </td>
-        <td>Exemplo1</td>
-        <td>Exemplo2</td>
-        <td>Exemplo3</td>
-      </tr>
-      </table>
-      <br><br><br>
-      <table style="color:red">
-      <tr>
-      <th>TIPO - </th>
-        <th>Ticket</th>
-        <th>Placa</th>
-        <th>Entrada</th>
-      
-      </tr>
-      <tr>
-      <th>NÃO PAGOS - </td>
-        <td>Exemplo1</td>
-        <td>Exemplo2</td>
-        <td>Exemplo3</td>
-      </tr>
-      </table> -->
+         
      
         </div>
         
         
     </div>
 
-    <div class="tableRight">
-      <table title="TicketsNaoPagos">
-        <caption class="tit-nonpag">Tickets Não Pagos</caption>
-        <thead>
-            <tr>
-              <th scope="col">Nº Ticket</th>
-              <th scope="col">Placa</th>
-              <th scope="col" colspan="3">Data</th>
-              <th scope="col" colspan="2">hora</th>
-              <th scope="col">Pago</th>
-              <th scope="col">Saiu?</th>
-              <th scope="col" colspan="2">Controle</th>
-            </tr>
-          </thead>
-        <tbody id="tableTicketNaoPago">
-            <!-- <tr>
-                <th scope="row">300</th>
-                <td>teste1</td>
-                <td>teste1</td>
-            </tr>
-            <tr>
-                <th scope="row">400</th>
-                <td>teste1</td>
-                <td>teste1</td> -->
-            </tr>
-        </tbody> 
-      </table>
-    </div>
-
-
-    <!-- <script src="js/jquery.js"></script>
-    <script src="js/main.js"></script> -->
   </body>
 </html>
 

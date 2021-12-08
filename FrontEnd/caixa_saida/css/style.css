@@ -1,8 +1,9 @@
 body{
     background-image: url("../img/park\ \(9\).jpg");
+    overflow-x: hidden;
 }
 #bkg {
-    width: 100%;
+    width: 99%;
     height: 65vh;
     margin: 0 ;
     border: 8px solid #008DFF    ;
@@ -148,19 +149,3 @@ color: white;
 form input{
     outline: 0;
 }
-
-.tableLeft{
-    height: auto;
-    width: auto;
-    top: 0;
-    left: 0;
-    position: relative;
-  }
-  
-  .tableRight{
-    height: auto;
-    width: auto;
-    top: 0;
-    right: 0;
-    position: relative;
-  }
