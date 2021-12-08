@@ -8,18 +8,32 @@
         <script src="../../js/comportamento.js"></script>
     </head>
     <body >
-        <H1 style="color: blue;">SIEG</H1>
-        <H2 style="background-color: crimson;">Cabine de Entrada</H2>
-        <H3>Preencha seus dados nos campos abaixo e clique em <b>gerar ticket:</b> </H3>
-        <p style="font-size: 20px; background-color: dimgrey;">Voce tem 15 minutos de tolerancia! </p>
-        <br>
-        <form action="">
-            Placa:<br> <input type="text" name="ID_PLACA" id="num_Placa"> <br>
-            <BR>
-            <BR>
-                <button class="gerar" type="button" name="SAVE_INFO" value="GERAR TICKET" onclick="geraTicket(placaNum = document.getElementById('num_Placa').value);">
-                    GERAR TICKET 
-                </button>
-        </form>
+        <header>
+            <div class="img-cab">
+                <img src="../../img/Picture4.png" alt="Logo" srcset="">
+            </div>
+            <div class="tit-cab">
+                <h1>Sistema Integrado de Estacionamentos e Garagens </h1>
+            </div>
+        </header>
+        <main>
+            <h2>Cabine de Entrada</h2>
+            <H3>Preencha seus dados nos campos abaixo e clique em <b>gerar ticket:</b> </H3>
+            <p style="font-size: 20px; background-color: dimgrey;">Voce tem 15 minutos de tolerancia! </p>
+            <br>
+            <form action="">
+                Placa:<br> <input type="text" name="ID_PLACA" id="num_Placa"> <br>
+                <BR>
+                <BR>
+                    <button class="gerar" type="button" name="SAVE_INFO" value="GERAR TICKET" onclick="geraTicket(placaNum = document.getElementById('num_Placa').value);">
+                        GERAR TICKET 
+                    </button>
+            </form>
+        </main>
+        <footer>
+
+        </footer>
+        
+        
     </body>
 </html>

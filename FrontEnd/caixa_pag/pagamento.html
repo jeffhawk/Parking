@@ -67,69 +67,70 @@
            <a href="../menu.html"><input type="button" value="Voltar" class="btn1" onclick="voltar();"></a>
            <button value="Teste" onclick="voltar()">Voltar</button>
         </div> -->
-       
+        <aside class="asideTable" id="ladoTabelas">
+            <p  class="tit-prin">Tickets no sistema </p>
+            <table title="TicketsPagos">
+                <caption class="tit-pag">Tickets Pagos</caption>          
+                <thead>
+                    <tr>
+                        <th scope="col">Nº Ticket</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Entrada</th>
+                        <!-- <th scope="col">Saida</th> -->
+                        <th scope="col">Status</th>
+                        <th scope="col">Controle</th>
+                    </tr>
+                </thead>
+                <!-- <tfoot>
+                    <tr><td colspan="4">Atualizado em: </td></tr>
+                </tfoot> -->
+                <tbody id="tableTicketPago">
+                    <!-- <tr>
+                        <th scope="row">100</th>
+                        <td data-label="Ticket">L1C2</td>
+                        <td>L1C3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">200</th>
+                        <td>teste1</td>
+                        <td>teste1</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr> -->
+                </tbody>
+            </table>
+            <br>
+            <table title="TicketsNaoPagos">
+                <caption class="tit-nonpag">Tickets Não Pagos</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Nº Ticket</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Controle</th>
+                    </tr>
+                </thead>
+                <tbody id="tableTicketNaoPago">
+                    <!-- <tr>
+                        <th scope="row">300</th>
+                        <td>teste1</td>
+                        <td>teste1</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">400</th>
+                        <td>teste1</td>
+                        <td>teste1</td> -->
+                    </tr>
+                </tbody> 
+            </table>
+            
+        </aside>
     </main>
+    <footer></footer>
 
-    <aside class="asideTable" id="ladoTabelas">
-        <p  class="tit-prin">Tickets no sistema </p>
-        <table title="TicketsPagos">
-            <caption class="tit-pag">Tickets Pagos</caption>          
-            <thead>
-                <tr>
-                    <th scope="col">Nº Ticket</th>
-                    <th scope="col">Placa</th>
-                    <th scope="col">Entrada</th>
-                    <!-- <th scope="col">Saida</th> -->
-                    <th scope="col">Status</th>
-                    <th scope="col">Controle</th>
-                </tr>
-            </thead>
-            <!-- <tfoot>
-                <tr><td colspan="4">Atualizado em: </td></tr>
-            </tfoot> -->
-            <tbody id="tableTicketPago">
-                <!-- <tr>
-                    <th scope="row">100</th>
-                    <td data-label="Ticket">L1C2</td>
-                    <td>L1C3</td>
-                </tr>
-                <tr>
-                    <th scope="row">200</th>
-                    <td>teste1</td>
-                    <td>teste1</td>
-                </tr>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr> -->
-            </tbody>
-        </table>
-        <br>
-        <table title="TicketsNaoPagos">
-            <caption class="tit-nonpag">Tickets Não Pagos</caption>
-            <thead>
-                <tr>
-                    <th scope="col">Nº Ticket</th>
-                    <th scope="col">Placa</th>
-                    <th scope="col">Data</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Controle</th>
-                </tr>
-            </thead>
-            <tbody id="tableTicketNaoPago">
-                <!-- <tr>
-                    <th scope="row">300</th>
-                    <td>teste1</td>
-                    <td>teste1</td>
-                </tr>
-                <tr>
-                    <th scope="row">400</th>
-                    <td>teste1</td>
-                    <td>teste1</td> -->
-                </tr>
-            </tbody> 
-        </table>
-        
-    </aside>
+    
     
     
     <!-- <script type="text/javascript" src="../js/script.js"></script> -->
